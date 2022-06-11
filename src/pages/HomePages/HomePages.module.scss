@@ -1,0 +1,8 @@
+.container{
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-start;
+  &__Card{
+    margin-right: 20px;
+  }
+}

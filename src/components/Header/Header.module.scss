@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  &__left {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    &_Name {
+      white-space: nowrap;
+      margin: 5px 10px 0px;
+      user-select: none;
+    }
+    p {
+      margin-left: 8px;
+    }
+  }
+  &__right {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    p {
+      margin-left: 8px;
+    }
+  }
+  &__hr {
+    transform: rotate(90deg);
+    width: 20px;
+    background-color: rgb(125, 124, 124);
+    height: 1px;
+    border-radius: 100%;
+    border: inherit;
+    margin: 0;
+  }
+}

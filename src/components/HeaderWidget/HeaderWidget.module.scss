@@ -1,0 +1,23 @@
+.container {
+  cursor: pointer;
+  user-select: none;
+  color: white;
+  font-weight: 500;
+  padding: 10px 13px;
+  background-color: rgb(165, 165, 165);
+  margin: 5px 3px 0px;
+  display: inline-block;
+  height: 45px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+  white-space: nowrap;
+  &:hover {
+    box-shadow: 4px 4px 8px 0px rgba(11, 34, 52, 0.2);
+    background-color: rgb(129, 129, 129);
+  }
+  &:active {
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2) inset;
+  }
+}

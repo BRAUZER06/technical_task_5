@@ -36,16 +36,16 @@ export const createTask = (cardId, textTask) => {
   };
 };
 
-export const deleteTask = (cardId, TastId) => {
+export const deleteTask = (cardId, taskId) => {
   return {
     type: "DELETE_TASK",
-    paylaod: { cardId, TastId },
+    paylaod: { cardId, taskId },
   };
 };
 
-export const redactTask = (cardId, TastId, newText) => {
+export const redactTask = (cardId, taskId, newText) => {
   return {
     type: "REDACT_TASK",
-    paylaod: { cardId, TastId, newText },
+    paylaod: { cardId, taskId, newText },
   };
 };

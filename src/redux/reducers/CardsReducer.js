@@ -47,17 +47,15 @@ export const cardsReducer = (state = initState, action) => {
 
     //доделать
     case "REDACT_CARD_TITLE":
-      console.log(initState);
-      console.log(action.paylaod);
-      return state.cards.map((card) => {
-        if (card.id === action.paylaod.id) {
-          return { ...state, title: action.paylaod.newTitleCard };
-        }
-        return state;
-      });
-
-
-
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card.id === action.paylaod.id) {
+            return { ...card, title: action.paylaod.newTitleCard };
+          }
+          return card;
+        }),
+      };
 
     case "CREATE_TASK":
       return state;
@@ -66,9 +64,6 @@ export const cardsReducer = (state = initState, action) => {
     case "REDACT_TASK":
       return state;
 
-
-
-      
     default:
       return state;
   }

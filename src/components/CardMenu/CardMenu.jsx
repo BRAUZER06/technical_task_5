@@ -11,7 +11,7 @@ const CardMenu = ({
       <hr />
       <p onClick={onClickCreateTaskInCard}>Добавить задачу</p>
       <p>Редактировать карточку</p>
-      <p>Изменить имя карточки</p>
+      <p onClick={onClickRedactNameCard}>Изменить имя карточки</p>
       <p onClick={onClickDeletedCard}>Удалить карточку</p>
     </div>
   );

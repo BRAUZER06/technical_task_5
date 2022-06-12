@@ -13,6 +13,6 @@
   width: 100vw;
   height: 100vh;
   background: url(./img/photo.jpg) 0 0/cover no-repeat;; 
-  padding: 40px;
+  padding: 40px 40px 0px;
   margin: 0 auto;
 }

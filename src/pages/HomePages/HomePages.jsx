@@ -5,7 +5,10 @@ import styles from "./HomePages.module.scss";
 
 const HomePages = () => {
   const cards = useSelector((state) => state.card.cards);
-console.log(cards);
+const state = useSelector(state=>state.card)
+
+
+  console.log(state);
   return (
     <div className={styles.container}>
       {cards &&

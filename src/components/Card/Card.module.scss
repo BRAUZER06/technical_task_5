@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  padding: 15px 10px;
+  padding: 15px 15px;
   min-height: 100px;
   width: 350px;
   background-color: rgb(180, 179, 179);
@@ -22,35 +22,74 @@
     }
   }
   &:hover {
-    box-shadow: 4px 5px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 5px 8px 0px rgba(34, 60, 80, 0.5);
   }
 
-  &__cardMenu {
-    padding: 10px;
-    background-color: rgb(227, 225, 225);
-    border-radius: 8px;
-    border:  1px solid gray;
-    z-index: 100;
-    width: 350px;
-    color: rgb(1, 10, 34);
-    position: absolute;
-    top: 50px;
-    right: -310px;
-    box-shadow: 4px 5px 8px 0px rgba(34, 60, 80, 0.2);
-    &_p_center {
-      text-align: center;
+  &__content {
+    transition: all 0.3s;
+    padding: 10px 12px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    &__header {
+      border-radius: 5px;
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      > p {
+
+        font-size: 18px;
+        font-weight: 500;
+      }
+      &_icon {
+    
+      
+     
+        cursor: pointer;
+       font-size: 33px;
+       padding: 4px;
+        border-radius: 50%;
+        transition: 0.3s;
+        &:hover{
+          background-color: rgb(204, 204, 204);
+        }
+      }
+    
     }
-    > p {
-      cursor: pointer;
-      padding: 10px 6px;
-      margin: 10px 0px;
-      &:hover{
+  &:hover {
+      background-color: rgb(251, 250, 255);
+      box-shadow: 3px 3px 8px 0px rgba(34, 60, 80, 0.8);
+    }
+
+
+
+
+    &__section {
+      display: flex;
+      flex-direction: column;
+    
+      &_input {
+        margin: 5px 0px;
+        align-items: center;
+        display: flex;
         border-radius: 5px;
-        background-color: rgb(194, 194, 194);
+        > input {
+          cursor: pointer;
+          width: 20px;
+          height: 20px;
+          margin: 10px 10px;
+          font-size: 17px;
+        }
+        > p {
+          cursor: pointer;
+          font-size: 20px;
+        }
+        &:hover {
+          background-color: rgb(226, 226, 226);
+        }
       }
     }
-    > hr {
-      margin: 10px 0px;
-    }
+  
   }
 }

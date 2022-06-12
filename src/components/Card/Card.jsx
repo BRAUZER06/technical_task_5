@@ -1,22 +1,34 @@
 import React from "react";
 import styles from "./Card.module.scss";
-import { AiOutlineEllipsis } from "react-icons/ai";
-import {deletedCardAction} from '../../redux/actions/CardsAction'
-import { useDispatch } from "react-redux";
+import { AiOutlineEllipsis, AiOutlineEdit } from "react-icons/ai";
+import {
+  deletedCardAction,
+  redactCardTitleAction,
+} from "../../redux/actions/CardsAction";
+import { useDispatch, useSelector } from "react-redux";
+import CardMenu from "../CardMenu/CardMenu";
 
-const Card = ({ title = "Текст", id}) => {
-  const dispatch = useDispatch()
-  const [checkedkMenuCard, setcheckedMenuCard] = React.useState(true);
-  console.log(id);
-  const openCardMenu = () => {
+const Card = ({ title = "Текст", id }) => {
+  const dispatch = useDispatch();
+  const card = useSelector((state) => state.card);
+  const [checkedkMenuCard, setcheckedMenuCard] = React.useState(false);
+
+  console.log(card);
+
+  const onClickOpenCardMenu = () => {
     setcheckedMenuCard(!checkedkMenuCard);
   };
-  const onClickDeletedCard = (id) => {
-     console.log(id);
-    dispatch(deletedCardAction(id))
-   
+  const onClickDeletedCard = () => {
+    console.log(id);
+    dispatch(deletedCardAction(id));
   };
-  const onClickRedactNameCard = () => {};
+  const onClickRedactNameCard = () => {
+    let newTitle = prompt("Смена названия карточки", title);
+    dispatch(redactCardTitleAction(id, newTitle));
+  };
+
+  const onClickCreateTaskInCard = () => {};
+
   return (
     <div className={styles.container}>
       <div className={styles.container__header}>
@@ -27,20 +39,36 @@ const Card = ({ title = "Текст", id}) => {
           {title}
         </p>
         <div className={styles.container__header_icon}>
-          <AiOutlineEllipsis onClick={openCardMenu} />
+          <AiOutlineEllipsis onClick={onClickOpenCardMenu} />
         </div>
 
         {checkedkMenuCard && (
-          <div className={styles.container__cardMenu}>
-            <p className={styles.container__cardMenu_p_center}>
-              Действие со списком
-            </p>
-            <hr />
-            <p>Добавить карточку</p>
-            <p>Редактировать карточку</p>
-            <p onClick={()=>onClickDeletedCard(id)}>Удалить карточку</p>
-          </div>
+          <CardMenu
+          onClickRedactNameCard={onClickRedactNameCard}
+            onClickDeletedCard={onClickDeletedCard}
+            onClickCreateTaskInCard={onClickCreateTaskInCard}
+          />
         )}
+      </div>
+      <div className={styles.container__content}>
+        <div className={styles.container__content__header}>
+          <p>{title}</p>{" "}
+          <AiOutlineEdit className={styles.container__content__header_icon} />
+        </div>
+        <div className={styles.container__content__section}>
+          <div className={styles.container__content__section_input}>
+            <input type="checkbox" /> <p>Text Text</p>
+          </div>
+          <div className={styles.container__content__section_input}>
+            <input type="checkbox" /> <p>Text Text</p>
+          </div>
+          <div className={styles.container__content__section_input}>
+            <input type="checkbox" /> <p>Text Text</p>
+          </div>
+          <div className={styles.container__content__section_input}>
+            <input type="checkbox" /> <p>Text Text</p>
+          </div>
+        </div>
       </div>
     </div>
   );

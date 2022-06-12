@@ -1,0 +1,28 @@
+.container__cardMenu {
+  padding: 10px;
+  background-color: rgb(227, 225, 225);
+  border-radius: 8px;
+  border: 1px solid gray;
+  z-index: 100;
+  width: 350px;
+  color: rgb(1, 10, 34);
+  position: absolute;
+  top: 50px;
+  right: -310px;
+  box-shadow: 4px 5px 8px 0px rgba(34, 60, 80, 0.2);
+  &_p_center {
+    text-align: center;
+  }
+  > p {
+    cursor: pointer;
+    padding: 10px 6px;
+    margin: 10px 0px;
+    &:hover {
+      border-radius: 5px;
+      background-color: rgb(194, 194, 194);
+    }
+  }
+  > hr {
+    margin: 10px 0px;
+  }
+}

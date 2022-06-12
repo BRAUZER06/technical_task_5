@@ -12,13 +12,13 @@ export const createCardInputCheckedAction = (checked) => {
   };
 };
 
-
 export const deletedCardAction = (id) => {
   return {
     type: "DELETED_CARD",
-    payload: id,
+    paylaod: id,
   };
 };
+
 export const redactCardTitleAction = (id, newTitleCard) => {
   return {
     type: "REDACT_CARD_TITLE",
@@ -26,5 +26,26 @@ export const redactCardTitleAction = (id, newTitleCard) => {
       id,
       newTitleCard,
     },
+  };
+};
+
+export const createTask = (cardId, textTask) => {
+  return {
+    type: "CREATE_TASK",
+    paylaod: { cardId, textTask },
+  };
+};
+
+export const deleteTask = (cardId, TastId) => {
+  return {
+    type: "DELETE_TASK",
+    paylaod: { cardId, TastId },
+  };
+};
+
+export const redactTask = (cardId, TastId, newText) => {
+  return {
+    type: "REDACT_TASK",
+    paylaod: { cardId, TastId, newText },
   };
 };

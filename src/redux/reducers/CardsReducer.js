@@ -23,40 +23,40 @@ const initState = {
         },
       ],
     },
-    // {
-    //   id: nanoid(10),
-    //   title: "Title2",
-    //   tasks: [
-    //     {
-    //       id: nanoid(10),
-    //       title: "Заголовок2",
-    //       contents: [
-    //         { id: nanoid(10), completed: false, text: "Текст Текст2" },
-    //         { id: nanoid(10), completed: false, text: "Текст Текст2" },
-    //         { id: nanoid(10), completed: false, text: "Текст Текст2" },
-    //       ],
-    //     },
-    //   ],
-    // },
-    // {
-    //   id: nanoid(10),
-    //   title: "Title3",
-    //   tasks: [
-    //     {
-    //       id: nanoid(10),
-    //       title: "Заголовок3",
-    //       contents: [
-    //         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-    //         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-    //         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-    //         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-    //         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-    //         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-    //         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-    //       ],
-    //     },
-    //   ],
-    // },
+    {
+      id: nanoid(10),
+      title: "Title2",
+      tasks: [
+        {
+          id: nanoid(10),
+          title: "Заголовок2",
+          contents: [
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+          ],
+        },
+      ],
+    },
+    {
+      id: nanoid(10),
+      title: "Title3",
+      tasks: [
+        {
+          id: nanoid(10),
+          title: "Заголовок3",
+          contents: [
+            { id: nanoid(10), completed: false, text: "Текст Текст3" },
+            { id: nanoid(10), completed: false, text: "Текст Текст3" },
+            { id: nanoid(10), completed: false, text: "Текст Текст3" },
+            { id: nanoid(10), completed: false, text: "Текст Текст3" },
+            { id: nanoid(10), completed: false, text: "Текст Текст3" },
+            { id: nanoid(10), completed: false, text: "Текст Текст3" },
+            { id: nanoid(10), completed: false, text: "Текст Текст3" },
+          ],
+        },
+      ],
+    },
   ],
   createCardInputChecked: false,
 };
@@ -110,7 +110,7 @@ export const cardsReducer = (state = initState, action) => {
           if (card.id === action.payload.cardId) {
             return {
               ...card,
-              title: card.tasks?.map((task) => {
+              tasks: card.tasks?.map((task) => {
                 if (task.id === action.payload.taskId) {
                   return { ...task, title: action.payload.newText };
                 }

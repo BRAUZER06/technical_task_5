@@ -8,14 +8,16 @@ import {
 import {
   deletedCardAction,
   redactCardTitleAction,
+  redactTaskAction,
 } from "../../redux/actions/CardsAction";
 import { useDispatch, useSelector } from "react-redux";
 import CardMenu from "../CardMenu/CardMenu";
 import classNames from "classname";
+import Task from "../Task/Task";
 
-const Card = ({ title = "Текст", id }) => {
+const Card = ({ title = "Текст", id, card }) => {
   const dispatch = useDispatch();
-  const card = useSelector((state) => state.card);
+
   const [checkedkMenuCard, setcheckedMenuCard] = React.useState(false);
 
   const onClickOpenCardMenu = () => {
@@ -30,8 +32,10 @@ const Card = ({ title = "Текст", id }) => {
     dispatch(redactCardTitleAction(id, newTitle));
   };
 
-  const onClickCreateTaskInCard = () => {};
-  const onClickTaskRedactMenu = () => {};
+  const redactTaskName = (cardId, taskId, taskTitle) => {
+    let newTitle = prompt("Смена названия задачи", taskTitle);
+    dispatch(redactTaskAction(cardId, taskId, newTitle));
+  };
 
   return (
     <div className={styles.container}>
@@ -55,59 +59,22 @@ const Card = ({ title = "Текст", id }) => {
           <CardMenu
             onClickRedactNameCard={onClickRedactNameCard}
             onClickDeletedCard={onClickDeletedCard}
-            onClickCreateTaskInCard={onClickCreateTaskInCard}
           />
         )}
       </div>
       <div className={styles.container__tasks}>
-        <div className={styles.container__content}>
-          <div className={styles.container__content__header}>
-            <p>{title}</p>
-            <AiOutlineEdit
-              onClick={onClickTaskRedactMenu}
-              className={styles.container__content__header_icon}
-            />
-          </div>
-          <div className={styles.container__content__section}>
-            <div className={styles.container__content__section_input}>
-              <input type="checkbox" /> <p>Text Text</p>
-            </div>
-            <div className={styles.container__content__section_input}>
-              <input type="checkbox" /> <p>Text Text</p>
-            </div>
-            <div className={styles.container__content__section_input}>
-              <input type="checkbox" /> <p>Text Text</p>
-            </div>
-            <div className={styles.container__content__section_input}>
-              <input type="checkbox" /> <p>Text Text</p>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.container__content}>
-          <div className={styles.container__content__header}>
-            <p>{title}</p>
-            <AiOutlineEdit className={styles.container__content__header_icon} />
-          </div>
-          <div className={styles.container__content__section}>
-            <div className={styles.container__content__section_input}>
-              <input type="checkbox" /> <p>Text Text</p>
-            </div>
-            <div className={styles.container__content__section_input}>
-              <input type="checkbox" /> <p>Text Text</p>
-            </div>
-            <div className={styles.container__content__section_input}>
-              <input type="checkbox" /> <p>Text Text</p>
-            </div>
-            <div className={styles.container__content__section_input}>
-              <input type="checkbox" /> <p>Text Text</p>
-            </div>
-          </div>
-        </div>
+        {card.tasks.map((task) => (
+          <Task
+            cardId={card.id}
+            key={task.id}
+            task={task}
+            redactTaskName={redactTaskName}
+          />
+        ))}
       </div>
 
       <div className={styles.container__footer}>
-        <AiOutlinePlus className={styles.container__footer_icon} />{" "}
+        <AiOutlinePlus className={styles.container__footer_icon} />
         <p>Добавить задачу</p>
       </div>
     </div>

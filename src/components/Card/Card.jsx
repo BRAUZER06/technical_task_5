@@ -9,6 +9,7 @@ import {
   deletedCardAction,
   redactCardTitleAction,
   redactTaskAction,
+  createTaskAction
 } from "../../redux/actions/CardsAction";
 import { useDispatch, useSelector } from "react-redux";
 import CardMenu from "../CardMenu/CardMenu";
@@ -30,12 +31,18 @@ const Card = ({ title = "Текст", id, card }) => {
   const onClickRedactNameCard = () => {
     let newTitle = prompt("Смена названия карточки", title);
     dispatch(redactCardTitleAction(id, newTitle));
+    setcheckedMenuCard(false);
   };
 
   const redactTaskName = (cardId, taskId, taskTitle) => {
     let newTitle = prompt("Смена названия задачи", taskTitle);
     dispatch(redactTaskAction(cardId, taskId, newTitle));
   };
+
+  const createTask = ()=>{
+    let newText = prompt('Введите имя Задачи')
+    dispatch(createTaskAction(card.id, newText ))
+  }
 
   return (
     <div className={styles.container}>
@@ -75,7 +82,7 @@ const Card = ({ title = "Текст", id, card }) => {
 
       <div className={styles.container__footer}>
         <AiOutlinePlus className={styles.container__footer_icon} />
-        <p>Добавить задачу</p>
+        <p onClick={createTask}>Добавить задачу</p>
       </div>
     </div>
   );

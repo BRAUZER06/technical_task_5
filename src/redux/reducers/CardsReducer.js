@@ -4,7 +4,49 @@ const initState = {
   cards: [
     {
       id: nanoid(10),
-      title: "Title1",
+      title: "Title2",
+      tasks: [
+        {
+          id: nanoid(10),
+          title: "Заголовок2",
+          contents: [
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+          ],
+        },
+        {
+          id: nanoid(10),
+          title: "Заголовок2",
+          contents: [
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+          ],
+        },
+        {
+          id: nanoid(10),
+          title: "Заголовок2",
+          contents: [
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+          ],
+        },
+        {
+          id: nanoid(10),
+          title: "Заголовок2",
+          contents: [
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+          ],
+        },
+      ],
+    },
+    {
+      id: nanoid(10),
+      title: "Title3",
       tasks: [
         {
           id: nanoid(10),
@@ -21,48 +63,10 @@ const initState = {
         },
       ],
     },
+
     {
       id: nanoid(10),
-      title: "Title2",
-      tasks: [
-        {
-          id: nanoid(10),
-          title: "Заголовок2",
-          contents: [
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-          ],
-        }, {
-          id: nanoid(10),
-          title: "Заголовок2",
-          contents: [
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-          ],
-        }, {
-          id: nanoid(10),
-          title: "Заголовок2",
-          contents: [
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-          ],
-        }, {
-          id: nanoid(10),
-          title: "Заголовок2",
-          contents: [
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-          ],
-        },
-      ],
-    },
-    {
-      id: nanoid(10),
-      title: "Title3",
+      title: "Title1",
       tasks: [
         {
           id: nanoid(10),
@@ -120,10 +124,41 @@ export const cardsReducer = (state = initState, action) => {
       };
 
     case "CREATE_TASK":
-      // return {...state, cards: )};
-      // cardId, textTask
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card.id === action.payload.cardId) {
+            return {
+              ...card,
+              tasks: [
+                ...card.tasks,
+                {
+                  id: nanoid(10),
+                  title: action.payload.textTask,
+                  contents: [],
+                },
+              ],
+            };
+          }
+          return card;
+        }),
+      };
+
     case "DELETE_TASK":
-      return state;
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card.id === action.payload.cardId) {
+            return {
+              ...card,
+              tasks: card.tasks.filter(
+                (task) => task.id !== action.payload.taskId
+              ),
+            };
+          }
+          return card;
+        }),
+      };
 
     case "REDACT_NAME_TASK":
       return {
@@ -143,21 +178,115 @@ export const cardsReducer = (state = initState, action) => {
           return card;
         }),
       };
-    // cardId, taskId, newText
-
-    case "DELETED_ITEM_TASK":
-      return state;
-
-    case "REDACT_NAME_ITEM_TASK":
-      return state;
 
     case "CREATE_ITEM_TASK":
-      return state;
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card.id === action.payload.cardId) {
+            return {
+              ...card,
+              tasks: card.tasks.map((task) => {
+                if (task.id === action.payload.taskId) {
+                  return {
+                    ...task,
+                    contents: [
+                      ...task.contents,
+                      {
+                        id: nanoid(10),
+                        completed: false,
+                        text: action.payload.nameTask,
+                      },
+                    ],
+                  };
+                }
+                return task;
+              }),
+            };
+          }
+          return card;
+        }),
+      };
+    //cardId, taskId, nameTask
+
+    case "DELETED_ITEM_TASK":
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card.id === action.payload.cardId) {
+            return {
+              ...card,
+              tasks: card.tasks.map((task) => {
+                if (task.id === action.payload.taskId) {
+                  return {
+                    ...task,
+                    contents: task.contents.filter(
+                      (item) => item.id !== action.payload.itemId
+                    ),
+                  };
+                }
+                return task;
+              }),
+            };
+          }
+          return card;
+        }),
+      };
+    //cardId, taskId, itemId
+
+    case "REDACT_NAME_ITEM_TASK":
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card.id === action.payload.cardId) {
+            return {
+              ...card,
+              tasks: card.tasks.map((task) => {
+                if (task.id === action.payload.taskId) {
+                  return {
+                    ...task,
+                    contents:task.contents.map(item=>{
+                      if(item.id === action.payload.itemId){
+                        return {...item, text: action.payload.newNameTask}
+                      }
+                      return item
+                    })
+                  };
+                }
+                return task;
+              }),
+            };
+          }
+          return card;
+        }),
+      };
+    //cardId, taskId, itemId, newNameTask
 
     case "TOGGLE_CHECKBOX_TASK":
       return state;
+    //cardId, taskId, itemId
 
     default:
       return state;
   }
 };
+
+// const g = {
+//   id: nanoid(10),
+//   title: "Title1",
+//   tasks: [
+//     {
+//       id: nanoid(10),
+//       title: "Заголовок3",
+//       contents: [
+//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
+//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
+//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
+//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
+//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
+//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
+//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
+//       ],
+//     },
+//   ],
+// },

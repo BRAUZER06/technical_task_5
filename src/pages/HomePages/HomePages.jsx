@@ -8,7 +8,7 @@ const HomePages = () => {
 const state = useSelector(state=>state.card)
 
 
-  console.log(state);
+
   return (
     <div className={styles.container}>
       {cards &&

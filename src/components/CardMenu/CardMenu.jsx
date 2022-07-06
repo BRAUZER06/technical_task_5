@@ -1,18 +1,14 @@
 import React from "react";
 import styles from "./CardMenu.module.scss";
-const CardMenu = ({
-  onClickCreateTaskInCard,
-  onClickDeletedCard,
-  onClickRedactNameCard,
-}) => {
+const CardMenu = ({ deletedCard, redactNameCard, createTask }) => {
   return (
     <div className={styles.container__cardMenu}>
       <p className={styles.container__cardMenu_p_center}>Действие со списком</p>
       <hr />
-      <p onClick={onClickCreateTaskInCard}>Добавить задачу</p>
+      <p onClick={createTask}>Добавить задачу</p>
       <p>Редактировать карточку</p>
-      <p onClick={onClickRedactNameCard}>Изменить имя карточки</p>
-      <p onClick={onClickDeletedCard}>Удалить карточку</p>
+      <p onClick={redactNameCard}>Изменить имя карточки</p>
+      <p onClick={deletedCard}>Удалить карточку</p>
     </div>
   );
 };

@@ -9,7 +9,12 @@ import {
   deletedCardAction,
   redactCardTitleAction,
   redactTaskAction,
-  createTaskAction
+  createTaskAction,
+  deleteTaskAction,
+  createItemAction,
+  checkedItemAction,
+  redactNameItemAction,
+  deletedItemAction,
 } from "../../redux/actions/CardsAction";
 import { useDispatch, useSelector } from "react-redux";
 import CardMenu from "../CardMenu/CardMenu";
@@ -21,36 +26,48 @@ const Card = ({ title = "Текст", id, card }) => {
 
   const [checkedkMenuCard, setcheckedMenuCard] = React.useState(false);
 
-  const onClickOpenCardMenu = () => {
+  const openCardMenu = () => {
     setcheckedMenuCard(!checkedkMenuCard);
   };
-  const onClickDeletedCard = () => {
-    console.log(id);
+  const deletedCard = () => {
     dispatch(deletedCardAction(id));
   };
-  const onClickRedactNameCard = () => {
+  const redactNameCard = () => {
     let newTitle = prompt("Смена названия карточки", title);
     dispatch(redactCardTitleAction(id, newTitle));
     setcheckedMenuCard(false);
   };
 
+  const createTask = () => {
+    let newText = prompt("Введите имя Задачи");
+    dispatch(createTaskAction(card.id, newText));
+  };
   const redactTaskName = (cardId, taskId, taskTitle) => {
     let newTitle = prompt("Смена названия задачи", taskTitle);
     dispatch(redactTaskAction(cardId, taskId, newTitle));
   };
+  const deletedTask = (cardId, taskId) => {
+    dispatch(deleteTaskAction(cardId, taskId));
+  };
 
-  const createTask = ()=>{
-    let newText = prompt('Введите имя Задачи')
-    dispatch(createTaskAction(card.id, newText ))
-  }
+  const createItem = (cardId, taskId, nameTask) => {
+    dispatch(createItemAction(cardId, taskId, nameTask));
+  };
+  const checkedItem = (cardId, taskId, itemId) => {
+    dispatch(checkedItemAction(cardId, taskId, itemId));
+  };
+  const redactNameItem = (cardId, taskId, itemId, newNameTask) => {
+    dispatch(redactNameItemAction(cardId, taskId, itemId, newNameTask));
+  };
+
+  const deletedItem = (cardId, taskId, itemId) => {
+    dispatch(deletedItemAction(cardId, taskId, itemId));
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.container__header}>
-        <p
-          onClick={onClickRedactNameCard}
-          className={styles.container__header_title}
-        >
+        <p onClick={redactNameCard} className={styles.container__header_title}>
           {title}
         </p>
         <div
@@ -59,13 +76,14 @@ const Card = ({ title = "Текст", id, card }) => {
             checkedkMenuCard && styles.container__header_iconActive
           )}
         >
-          <AiOutlineEllipsis onClick={onClickOpenCardMenu} />
+          <AiOutlineEllipsis onClick={openCardMenu} />
         </div>
 
         {checkedkMenuCard && (
           <CardMenu
-            onClickRedactNameCard={onClickRedactNameCard}
-            onClickDeletedCard={onClickDeletedCard}
+            createTask={createTask}
+            redactNameCard={redactNameCard}
+            deletedCard={deletedCard}
           />
         )}
       </div>
@@ -76,13 +94,19 @@ const Card = ({ title = "Текст", id, card }) => {
             key={task.id}
             task={task}
             redactTaskName={redactTaskName}
+            deletedTask={deletedTask}
+            
+            createItem={createItem}
+            redactNameItem={redactNameItem}
+            checkedItem={checkedItem}
+            deletedItem={deletedItem}
           />
         ))}
       </div>
 
-      <div className={styles.container__footer}>
+      <div onClick={createTask} className={styles.container__footer}>
         <AiOutlinePlus className={styles.container__footer_icon} />
-        <p onClick={createTask}>Добавить задачу</p>
+        <p>Добавить задачу</p>
       </div>
     </div>
   );

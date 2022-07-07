@@ -14,6 +14,12 @@ const Task = ({
   checkedItem,
   deletedItem,
 }) => {
+  const fucCreateItem = (cardId, taskID) => {
+    let newText = prompt("Введите названия Пункта");
+    if (newText) {
+      return createItem(cardId, taskID, newText);
+    }
+  };
   return (
     <div className={styles.container__content}>
       <div className={styles.container__content__header}>
@@ -28,7 +34,7 @@ const Task = ({
           />
           <AiOutlinePlus
             onClick={() => {
-              createItem(cardId, task.id, prompt("Введите названия Пункта"));
+              fucCreateItem(cardId, task.id);
             }}
             className={styles.container__content__header_icon}
           />

@@ -2,7 +2,21 @@
   margin-top: 30px;
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   &__Card {
     margin-right: 20px;
+  }
+}
+@media (max-width: 800px) {
+  .container {
+    &__Card {
+      margin-right: 5px;
+    }
+  }
+}
+
+@media (max-width: 690px) {
+  .container {
+    justify-content: center;
   }
 }

@@ -27,3 +27,29 @@
     margin: 10px 0px;
   }
 }
+
+@media (max-width: 1070px) {
+  .container__cardMenu {
+    width: 270px;
+    right: 13px;
+    font-size: 17px;
+    > p {
+      padding: 8px;
+      margin: 8px;
+    }
+  }
+}
+
+@media (max-width: 690px) {
+  .container__cardMenu {
+    padding: 5px;
+    width: 250px;
+    top: 45px;
+    right: 13px;
+    font-size: 14px;
+    > p {
+      padding: 5px;
+      margin: 5px;
+    }
+  }
+}

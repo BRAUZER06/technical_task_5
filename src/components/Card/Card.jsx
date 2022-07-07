@@ -44,7 +44,10 @@ const Card = ({ title = "Текст", id, card }) => {
 
   const createTask = () => {
     let newText = prompt("Введите имя Задачи");
-    dispatch(createTaskAction(card.id, newText));
+    if (newText) {
+      dispatch(createTaskAction(card.id, newText));
+    }
+
     setcheckedMenuCard(false);
   };
   const redactTaskName = (cardId, taskId, taskTitle) => {

@@ -63,10 +63,10 @@ export const createItemAction = (cardId, taskId, nameTask) => {
     payload: { cardId, taskId, nameTask },
   };
 };
-export const checkedItemAction = (cardId, taskId, itemId) => {
+export const checkedItemAction = (cardId, taskId, itemId, checked) => {
   return {
-    type: "TOGGLE_CHECKBOX_TASK",
-    payload: { cardId, taskId, itemId },
+    type: "TOGGLE_CHECKBOX_ITEM_TASK",
+    payload: { cardId, taskId, itemId, checked },
   };
 };
 export const redactNameItemAction = (cardId, taskId, itemId, newNameTask) => {

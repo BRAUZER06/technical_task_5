@@ -13,6 +13,10 @@
     p {
       margin-left: 8px;
     }
+    &_content {
+      display: flex;
+      align-items: center;
+    }
   }
   &__right {
     font-size: 20px;
@@ -20,6 +24,10 @@
     align-items: center;
     p {
       margin-left: 8px;
+    }
+    &_content {
+      display: flex;
+      align-items: center;
     }
   }
   &__hr {
@@ -30,5 +38,16 @@
     border-radius: 100%;
     border: inherit;
     margin: 0;
+  }
+}
+@media (max-width: 1900px) {
+  .container__right_content {
+    display: none;
+  }
+}
+
+@media (max-width: 1360px) {
+  .container__left_content {
+    display: none;
   }
 }

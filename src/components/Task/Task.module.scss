@@ -16,14 +16,22 @@
       font-weight: 500;
     }
     &_icon {
+      opacity: 1;
       cursor: pointer;
       font-size: 33px;
       padding: 3px;
       border-radius: 50%;
       transition: 0.3s;
+      margin-right: 5px;
       &:hover {
         background-color: rgb(204, 204, 204);
       }
+    }
+    &_iconItemDeletedOpacity {
+      opacity: 0;
+    }
+    &_iconTaskDeletedOpacity {
+      opacity: 0;
     }
   }
   &:hover {
@@ -34,26 +42,43 @@
   &__section {
     display: flex;
     flex-direction: column;
-
-    &_input {
+  }
+  &_input {
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_div {
       margin: 5px 0px;
       align-items: center;
       display: flex;
+
       border-radius: 5px;
       > input {
+        margin-left: 7px;
         cursor: pointer;
-        width: 20px;
-        height: 20px;
-        margin: 10px 10px;
+        min-width: 20px;
+        min-height: 20px;
+        border: 2px solid black;
         font-size: 17px;
       }
       > p {
+        margin: 8px 10px;
         cursor: pointer;
         font-size: 20px;
       }
-      &:hover {
-        background-color: rgb(226, 226, 226);
-      }
+    }
+    &:hover {
+      background-color: rgb(226, 226, 226);
     }
   }
+}
+
+.container__content_input:hover .container__content__header_iconItemDeletedOpacity {
+  opacity: 1;
+  color: red;
+}
+.container__content:hover .container__content__header_iconTaskDeletedOpacity {
+  opacity: 1;
+  color: red;
 }

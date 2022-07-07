@@ -4,11 +4,11 @@ const initState = {
   cards: [
     {
       id: nanoid(10),
-      title: "Title2",
+      title: "Title1",
       tasks: [
         {
           id: nanoid(10),
-          title: "Заголовок2",
+          title: "Задача №1",
           contents: [
             { id: nanoid(10), completed: false, text: "Текст Текст2" },
             { id: nanoid(10), completed: false, text: "Текст Текст2" },
@@ -17,7 +17,7 @@ const initState = {
         },
         {
           id: nanoid(10),
-          title: "Заголовок2",
+          title: "Задача №2",
           contents: [
             { id: nanoid(10), completed: false, text: "Текст Текст2" },
             { id: nanoid(10), completed: false, text: "Текст Текст2" },
@@ -26,7 +26,7 @@ const initState = {
         },
         {
           id: nanoid(10),
-          title: "Заголовок2",
+          title: "Задача №3",
           contents: [
             { id: nanoid(10), completed: false, text: "Текст Текст2" },
             { id: nanoid(10), completed: false, text: "Текст Текст2" },
@@ -35,7 +35,7 @@ const initState = {
         },
         {
           id: nanoid(10),
-          title: "Заголовок2",
+          title: "Задача №4",
           contents: [
             { id: nanoid(10), completed: false, text: "Текст Текст2" },
             { id: nanoid(10), completed: false, text: "Текст Текст2" },
@@ -46,11 +46,11 @@ const initState = {
     },
     {
       id: nanoid(10),
-      title: "Title3",
+      title: "Title2",
       tasks: [
         {
           id: nanoid(10),
-          title: "Заголовок3",
+          title: "Задача №1",
           contents: [
             { id: nanoid(10), completed: false, text: "Текст Текст3" },
             { id: nanoid(10), completed: false, text: "Текст Текст3" },
@@ -66,11 +66,11 @@ const initState = {
 
     {
       id: nanoid(10),
-      title: "Title1",
+      title: "Title3",
       tasks: [
         {
           id: nanoid(10),
-          title: "Заголовок3",
+          title: "Задача №1",
           contents: [
             { id: nanoid(10), completed: false, text: "Текст Текст3" },
             { id: nanoid(10), completed: false, text: "Текст Текст3" },
@@ -80,6 +80,19 @@ const initState = {
             { id: nanoid(10), completed: false, text: "Текст Текст3" },
             { id: nanoid(10), completed: false, text: "Текст Текст3" },
           ],
+        },
+        {
+          id: nanoid(10),
+          title: "Задача №2",
+          contents: [
+            { id: nanoid(10), completed: false, text: "Текст Текст3" },
+            { id: nanoid(10), completed: false, text: "Текст Текст3" },
+          ],
+        },
+        {
+          id: nanoid(10),
+          title: "Задача №3",
+          contents: [],
         },
       ],
     },
@@ -89,6 +102,9 @@ const initState = {
 
 export const cardsReducer = (state = initState, action) => {
   switch (action.type) {
+    //CARD
+    //CARD
+
     case "CREATE_CARD":
       return {
         ...state,
@@ -111,7 +127,6 @@ export const cardsReducer = (state = initState, action) => {
     case "CREATE_CARD_INPUT_CHECKED":
       return { ...state, createCardInputChecked: action.payload };
 
-    //доделать
     case "REDACT_CARD_TITLE":
       return {
         ...state,
@@ -122,6 +137,9 @@ export const cardsReducer = (state = initState, action) => {
           return card;
         }),
       };
+
+    //TASK
+    //TASK
 
     case "CREATE_TASK":
       return {
@@ -178,6 +196,9 @@ export const cardsReducer = (state = initState, action) => {
           return card;
         }),
       };
+
+    //ITEM
+    //ITEM
 
     case "CREATE_ITEM_TASK":
       return {
@@ -245,12 +266,12 @@ export const cardsReducer = (state = initState, action) => {
                 if (task.id === action.payload.taskId) {
                   return {
                     ...task,
-                    contents:task.contents.map(item=>{
-                      if(item.id === action.payload.itemId){
-                        return {...item, text: action.payload.newNameTask}
+                    contents: task.contents.map((item) => {
+                      if (item.id === action.payload.itemId) {
+                        return { ...item, text: action.payload.newNameTask };
                       }
-                      return item
-                    })
+                      return item;
+                    }),
                   };
                 }
                 return task;
@@ -262,31 +283,35 @@ export const cardsReducer = (state = initState, action) => {
       };
     //cardId, taskId, itemId, newNameTask
 
-    case "TOGGLE_CHECKBOX_TASK":
-      return state;
-    //cardId, taskId, itemId
+    case "TOGGLE_CHECKBOX_ITEM_TASK":
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card.id === action.payload.cardId) {
+            return {
+              ...card,
+              tasks: card.tasks.map((task) => {
+                if (task.id === action.payload.taskId) {
+                  return {
+                    ...task,
+                    contents: task.contents.map((item) => {
+                      if (item.id === action.payload.itemId) {
+                        return { ...item, completed: action.payload.checked };
+                      }
+                      return item;
+                    }),
+                  };
+                }
+                return task;
+              }),
+            };
+          }
+          return card;
+        }),
+      };
+    //cardId, taskId, itemId, checked
 
     default:
       return state;
   }
 };
-
-// const g = {
-//   id: nanoid(10),
-//   title: "Title1",
-//   tasks: [
-//     {
-//       id: nanoid(10),
-//       title: "Заголовок3",
-//       contents: [
-//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-//         { id: nanoid(10), completed: false, text: "Текст Текст3" },
-//       ],
-//     },
-//   ],
-// },

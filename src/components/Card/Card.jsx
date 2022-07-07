@@ -30,10 +30,14 @@ const Card = ({ title = "Текст", id, card }) => {
     setcheckedMenuCard(!checkedkMenuCard);
   };
   const deletedCard = () => {
-    dispatch(deletedCardAction(id));
+    const result = window.confirm("Вы точно хотите удаить Карточку ?");
+    if (result) {
+      dispatch(deletedCardAction(id));
+    }
   };
   const redactNameCard = () => {
-    let newTitle = prompt("Смена названия карточки", title);
+    let newTitle = prompt("Смена названия Карточки", title);
+
     dispatch(redactCardTitleAction(id, newTitle));
     setcheckedMenuCard(false);
   };
@@ -41,10 +45,12 @@ const Card = ({ title = "Текст", id, card }) => {
   const createTask = () => {
     let newText = prompt("Введите имя Задачи");
     dispatch(createTaskAction(card.id, newText));
+    setcheckedMenuCard(false);
   };
   const redactTaskName = (cardId, taskId, taskTitle) => {
-    let newTitle = prompt("Смена названия задачи", taskTitle);
+    let newTitle = prompt("Смена названия Задачи", taskTitle);
     dispatch(redactTaskAction(cardId, taskId, newTitle));
+    setcheckedMenuCard(false);
   };
   const deletedTask = (cardId, taskId) => {
     dispatch(deleteTaskAction(cardId, taskId));
@@ -53,11 +59,13 @@ const Card = ({ title = "Текст", id, card }) => {
   const createItem = (cardId, taskId, nameTask) => {
     dispatch(createItemAction(cardId, taskId, nameTask));
   };
-  const checkedItem = (cardId, taskId, itemId) => {
-    dispatch(checkedItemAction(cardId, taskId, itemId));
+  const checkedItem = (cardId, taskId, itemId, checked) => {
+    dispatch(checkedItemAction(cardId, taskId, itemId, checked));
   };
   const redactNameItem = (cardId, taskId, itemId, newNameTask) => {
-    dispatch(redactNameItemAction(cardId, taskId, itemId, newNameTask));
+    if (newNameTask) {
+      dispatch(redactNameItemAction(cardId, taskId, itemId, newNameTask));
+    }
   };
 
   const deletedItem = (cardId, taskId, itemId) => {
@@ -93,9 +101,9 @@ const Card = ({ title = "Текст", id, card }) => {
             cardId={card.id}
             key={task.id}
             task={task}
+            taskId={task.id}
             redactTaskName={redactTaskName}
             deletedTask={deletedTask}
-            
             createItem={createItem}
             redactNameItem={redactNameItem}
             checkedItem={checkedItem}

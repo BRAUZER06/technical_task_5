@@ -16,3 +16,9 @@
   padding: 40px 40px 0px;
   margin: 0 auto;
 }
+@media (max-width:425px) {
+  .App{
+    padding: 20px 20px 0px;
+  }
+  
+}

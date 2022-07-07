@@ -1,12 +1,16 @@
 import React from "react";
 import styles from "./Task.module.scss";
 import { AiOutlineEdit, AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import classname from "classname";
 const Task = ({
   task,
   cardId,
+  taskId,
   redactTaskName,
   deletedTask,
   createItem,
+  redactNameItem,
   checkedItem,
   deletedItem,
 }) => {
@@ -17,7 +21,10 @@ const Task = ({
         <div>
           <AiOutlineDelete
             onClick={() => deletedTask(cardId, task.id)}
-            className={styles.container__content__header_icon}
+            className={classname(
+              styles.container__content__header_icon,
+              styles.container__content__header_iconTaskDeletedOpacity
+            )}
           />
           <AiOutlinePlus
             onClick={() => {
@@ -34,19 +41,37 @@ const Task = ({
 
       <div className={styles.container__content__section}>
         {task.contents?.map((content) => (
-          <div
-            key={content.id}
-            className={styles.container__content__section_input}
-          >
-            <input
-              onClick={() => checkedItem(cardId, task.id, content.id)}
-              type="checkbox"
-            />
-            <p>{content.text}</p>
+          <div key={content.id} className={styles.container__content_input}>
+            <div className={styles.container__content_input_div}>
+              <input
+                checked={null}
+                onChange={(e) => {
+                  checkedItem(cardId, task.id, content.id, e.target.checked);
+                }}
+                name={content.id}
+                type="checkbox"
+              />
+              <p
+                onDoubleClick={() =>
+                  redactNameItem(
+                    cardId,
+                    task.id,
+                    content.id,
+                    prompt("Введите новое название Пункта")
+                  )
+                }
+              >
+                {content.text}
+              </p>
+            </div>
+
             <div>
               <AiOutlineDelete
                 onClick={() => deletedItem(cardId, task.id, content.id)}
-                className={styles.container__content__header_icon}
+                className={classname(
+                  styles.container__content__header_icon,
+                  styles.container__content__header_iconItemDeletedOpacity
+                )}
               />
             </div>
           </div>

@@ -1,5 +1,17 @@
 import { nanoid } from "nanoid";
-
+import {
+  CREATE_CARD_INPUT_CHECKED,
+  CREATE_CARD,
+  REDACT_CARD_TITLE,
+  DELETED_CARD,
+  CREATE_TASK,
+  REDACT_NAME_TASK,
+  DELETE_TASK,
+  CREATE_ITEM_TASK,
+  TOGGLE_CHECKBOX_ITEM_TASK,
+  REDACT_NAME_ITEM_TASK,
+  DELETED_ITEM_TASK,
+} from "../types/CardsActionTypes";
 const initState = {
   cards: [
     {
@@ -13,6 +25,7 @@ const initState = {
             { id: nanoid(10), completed: false, text: "Текст Текст2" },
             { id: nanoid(10), completed: false, text: "Текст Текст2" },
             { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Lorem Ipsum - это текст-рыба, часто используемый в Aldus PageMaker, в шаблонах которых используется Lorem Ipsum Maker, в шаблонах которых используется Lorem Ipsum." },
           ],
         },
         {
@@ -105,7 +118,7 @@ export const cardsReducer = (state = initState, action) => {
     //CARD
     //CARD
 
-    case "CREATE_CARD":
+    case CREATE_CARD:
       return {
         ...state,
         cards: [
@@ -118,33 +131,36 @@ export const cardsReducer = (state = initState, action) => {
         ],
       };
 
-    case "DELETED_CARD":
+    case DELETED_CARD:
       return {
         ...state,
         cards: state.cards.filter((card) => card.id !== action.payload),
       };
 
-    case "CREATE_CARD_INPUT_CHECKED":
+    case CREATE_CARD_INPUT_CHECKED:
       return { ...state, createCardInputChecked: action.payload };
 
-    case "REDACT_CARD_TITLE":
+    case REDACT_CARD_TITLE:
       return {
         ...state,
         cards: state.cards.map((card) => {
+
           if (card.id === action.payload.id) {
             return { ...card, title: action.payload.newTitleCard };
           }
           return card;
+
         }),
       };
 
     //TASK
     //TASK
 
-    case "CREATE_TASK":
+    case CREATE_TASK:
       return {
         ...state,
         cards: state.cards.map((card) => {
+
           if (card.id === action.payload.cardId) {
             return {
               ...card,
@@ -159,13 +175,16 @@ export const cardsReducer = (state = initState, action) => {
             };
           }
           return card;
+
         }),
       };
 
-    case "DELETE_TASK":
+
+    case DELETE_TASK:
       return {
         ...state,
         cards: state.cards.map((card) => {
+
           if (card.id === action.payload.cardId) {
             return {
               ...card,
@@ -175,39 +194,48 @@ export const cardsReducer = (state = initState, action) => {
             };
           }
           return card;
+
         }),
       };
 
-    case "REDACT_NAME_TASK":
+
+    case REDACT_NAME_TASK:
       return {
         ...state,
         cards: state.cards?.map((card) => {
+
           if (card.id === action.payload.cardId) {
             return {
               ...card,
               tasks: card.tasks?.map((task) => {
+
                 if (task.id === action.payload.taskId) {
                   return { ...task, title: action.payload.newText };
                 }
                 return task;
+
               }),
             };
           }
           return card;
+
         }),
       };
 
+
     //ITEM
     //ITEM
 
-    case "CREATE_ITEM_TASK":
+    case CREATE_ITEM_TASK:       //cardId, taskId, nameTask
       return {
         ...state,
-        cards: state.cards.map((card) => {
+        cards: state.cards.map((card) => {  
+
           if (card.id === action.payload.cardId) {
             return {
               ...card,
               tasks: card.tasks.map((task) => {
+
                 if (task.id === action.payload.taskId) {
                   return {
                     ...task,
@@ -222,22 +250,26 @@ export const cardsReducer = (state = initState, action) => {
                   };
                 }
                 return task;
+
               }),
             };
           }
           return card;
+
         }),
       };
-    //cardId, taskId, nameTask
 
-    case "DELETED_ITEM_TASK":
+
+    case DELETED_ITEM_TASK:           //cardId, taskId, itemId
       return {
         ...state,
         cards: state.cards.map((card) => {
+
           if (card.id === action.payload.cardId) {
             return {
               ...card,
               tasks: card.tasks.map((task) => {
+
                 if (task.id === action.payload.taskId) {
                   return {
                     ...task,
@@ -247,69 +279,85 @@ export const cardsReducer = (state = initState, action) => {
                   };
                 }
                 return task;
+
               }),
             };
           }
           return card;
+
         }),
       };
-    //cardId, taskId, itemId
 
-    case "REDACT_NAME_ITEM_TASK":
+
+      
+    case REDACT_NAME_ITEM_TASK:   //cardId, taskId, itemId, newNameTask
       return {
         ...state,
         cards: state.cards.map((card) => {
+
           if (card.id === action.payload.cardId) {
             return {
               ...card,
               tasks: card.tasks.map((task) => {
+
                 if (task.id === action.payload.taskId) {
                   return {
                     ...task,
                     contents: task.contents.map((item) => {
+
                       if (item.id === action.payload.itemId) {
                         return { ...item, text: action.payload.newNameTask };
                       }
                       return item;
+
                     }),
                   };
                 }
                 return task;
+
               }),
             };
           }
           return card;
+
         }),
       };
-    //cardId, taskId, itemId, newNameTask
+  
 
-    case "TOGGLE_CHECKBOX_ITEM_TASK":
+
+    case TOGGLE_CHECKBOX_ITEM_TASK:     //cardId, taskId, itemId, checked
       return {
         ...state,
         cards: state.cards.map((card) => {
+
           if (card.id === action.payload.cardId) {
             return {
               ...card,
               tasks: card.tasks.map((task) => {
+
                 if (task.id === action.payload.taskId) {
                   return {
                     ...task,
                     contents: task.contents.map((item) => {
+
                       if (item.id === action.payload.itemId) {
                         return { ...item, completed: action.payload.checked };
                       }
                       return item;
+
                     }),
                   };
                 }
                 return task;
+
               }),
             };
           }
           return card;
+          
         }),
       };
-    //cardId, taskId, itemId, checked
+  
 
     default:
       return state;

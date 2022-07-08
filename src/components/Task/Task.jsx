@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "./Task.module.scss";
 import { AiOutlineEdit, AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
-import { useSelector } from "react-redux";
+
 import classname from "classname";
 const Task = ({
   task,
   cardId,
-  taskId,
   redactTaskName,
   deletedTask,
   createItem,

@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Card from "../../components/Card/Card";
+import Modal from "../../components/Modal/Modal";
+
 import styles from "./HomePages.module.scss";
 
 const HomePages = () => {
   const cards = useSelector((state) => state.card.cards);
-  const state = useSelector((state) => state.card);
 
   return (
     <div className={styles.container}>
@@ -15,6 +16,7 @@ const HomePages = () => {
             <Card card={card} id={card.id} title={card.title} />
           </div>
         ))}
+      <Modal />
     </div>
   );
 };

@@ -15,7 +15,6 @@ import { FiUsers } from "react-icons/fi";
 import { BsLightning } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  createCardInputCheckedAction,
   createCardAction,
 } from "../../redux/actions/CardsAction";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -44,8 +43,8 @@ const Header = ({ onClickCheckedNavMenu }) => {
         </HeaderWidget>
         <div className={styles.container__left_content}>
           <h2 className={styles.container__left_Name}>Junior Gate App</h2>
-          <HeaderWidget>
-            <BiStar />
+          <HeaderWidget >
+            <BiStar  />
           </HeaderWidget>
           <hr className={styles.container__hr} />
           <HeaderWidget>

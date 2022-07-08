@@ -1,10 +1,6 @@
 import React from "react";
 import styles from "./Card.module.scss";
-import {
-  AiOutlineEllipsis,
-  AiOutlineEdit,
-  AiOutlinePlus,
-} from "react-icons/ai";
+import { AiOutlineEllipsis, AiOutlinePlus } from "react-icons/ai";
 import {
   deletedCardAction,
   redactCardTitleAction,
@@ -16,24 +12,34 @@ import {
   redactNameItemAction,
   deletedItemAction,
 } from "../../redux/actions/CardsAction";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import CardMenu from "../CardMenu/CardMenu";
 import classNames from "classname";
 import Task from "../Task/Task";
+import {
+  checkedModalCardAction,
+  getModalCardAction,
+} from "../../redux/actions/ModalAction";
 
 const Card = ({ title = "Текст", id, card }) => {
   const dispatch = useDispatch();
-
   const [checkedkMenuCard, setcheckedMenuCard] = React.useState(false);
+
+  const dbClickOpenModal = () => {
+    dispatch(getModalCardAction(card));
+    dispatch(checkedModalCardAction(true));
+  };
 
   const openCardMenu = () => {
     setcheckedMenuCard(!checkedkMenuCard);
   };
+
   const deletedCard = () => {
     const result = window.confirm("Вы точно хотите удаить Карточку ?");
     if (result) {
       dispatch(deletedCardAction(id));
     }
+    setcheckedMenuCard(false);
   };
   const redactNameCard = () => {
     let newTitle = prompt("Смена названия Карточки", title);
@@ -76,7 +82,7 @@ const Card = ({ title = "Текст", id, card }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div onDoubleClick={dbClickOpenModal} className={styles.container}>
       <div className={styles.container__header}>
         <p onClick={redactNameCard} className={styles.container__header_title}>
           {title}

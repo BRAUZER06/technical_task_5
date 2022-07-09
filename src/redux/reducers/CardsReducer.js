@@ -16,15 +16,15 @@ const initState = {
   cards: [
     {
       id: nanoid(10),
-      title: "Title1",
+      title: "Сегодня",
       tasks: [
         {
           id: nanoid(10),
           title: "Задача №1",
           contents: [
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Купить собаку" },
+            { id: nanoid(10), completed: false, text: "Продать собаку" },
+            { id: nanoid(10), completed: false, text: "Опять купить собаку" },
             { id: nanoid(10), completed: false, text: "Lorem Ipsum - это текст-рыба, часто используемый в Aldus PageMaker, в шаблонах которых используется Lorem Ipsum Maker, в шаблонах которых используется Lorem Ipsum." },
           ],
         },
@@ -32,46 +32,46 @@ const initState = {
           id: nanoid(10),
           title: "Задача №2",
           contents: [
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Пойти в вуз" },
+            { id: nanoid(10), completed: false, text: "Остаться дома" },
+            { id: nanoid(10), completed: false, text: "Дебажить проект" },
           ],
         },
         {
           id: nanoid(10),
           title: "Задача №3",
           contents: [
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Пойти в магаз " },
+            { id: nanoid(10), completed: false, text: "Купить тостер " },
+            { id: nanoid(10), completed: false, text: "Хлеб" },
           ],
         },
         {
           id: nanoid(10),
           title: "Задача №4",
           contents: [
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
-            { id: nanoid(10), completed: false, text: "Текст Текст2" },
+            { id: nanoid(10), completed: false, text: "Четкий же сайт" },
+            { id: nanoid(10), completed: false, text: "Его нужно докончить" },
+            { id: nanoid(10), completed: false, text: "Текст" },
           ],
         },
       ],
     },
     {
       id: nanoid(10),
-      title: "Title2",
+      title: "Дедлайн",
       tasks: [
         {
           id: nanoid(10),
           title: "Задача №1",
           contents: [
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
+            { id: nanoid(10), completed: false, text: "Рефакторинг кода " },
+            { id: nanoid(10), completed: false, text: "Убрать Баг" },
+            { id: nanoid(10), completed: false, text: "Оптимизация" },
+            { id: nanoid(10), completed: false, text: "Подключить Redux" },
+            { id: nanoid(10), completed: false, text: "Написать легкий UI" },
+            { id: nanoid(10), completed: false, text: "Адаптация моб" },
+            { id: nanoid(10), completed: false, text: "Сверстать Input" },
           ],
         },
       ],
@@ -83,23 +83,23 @@ const initState = {
       tasks: [
         {
           id: nanoid(10),
-          title: "Задача №1",
+          title: "Никогда в жизни ",
           contents: [
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
+            { id: nanoid(10), completed: false, text: "Отдохнуть" },
+            { id: nanoid(10), completed: false, text: "Пойти на море " },
+            { id: nanoid(10), completed: false, text: "Поиграть в игры" },
+            { id: nanoid(10), completed: false, text: "Посидеть почилить" },
+            { id: nanoid(10), completed: false, text: "Поднять зп" },
+            { id: nanoid(10), completed: false, text: "Повысить" },
+            { id: nanoid(10), completed: false, text: "Дебжить проект" },
           ],
         },
         {
           id: nanoid(10),
-          title: "Задача №2",
+          title: "То что сделаю ",
           contents: [
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
-            { id: nanoid(10), completed: false, text: "Текст Текст3" },
+            { id: nanoid(10), completed: false, text: "Мммм" },
+            { id: nanoid(10), completed: false, text: "сложно" },
           ],
         },
         {

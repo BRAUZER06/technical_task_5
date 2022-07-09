@@ -40,10 +40,21 @@
       font-size: 20px;
       display: flex;
       align-items: center;
+      > a {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+        color: rgb(1, 15, 50);
+        > p {
+          margin-left: 15px;
+        }
+      }
       > p {
         display: inline;
         margin-left: 15px;
       }
+
       &:hover {
         background-color: rgb(230, 230, 230);
       }

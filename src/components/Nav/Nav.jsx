@@ -55,9 +55,14 @@ const Nav = ({ checkedNavMenu, onClickCheckedNavMenu }) => {
             <div className={styles.container__nav_item}>
               <MdOutlineSpaceDashboard /> <p>О доске</p>
             </div>
-            <div className={styles.container__nav_item}>
-              <AiOutlineEllipsis /> <p>Еще</p>
-            </div>
+            <a href="">
+              <div
+                href="https://github.com/BRAUZER06"
+                className={styles.container__nav_item}
+              >
+                <AiOutlineEllipsis /> <p>Еще</p>
+              </div>
+            </a>
           </div>
         </div>
       )}

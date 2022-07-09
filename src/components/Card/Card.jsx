@@ -25,6 +25,12 @@ const Card = ({ title = "Текст", id, card }) => {
   const dispatch = useDispatch();
   const [checkedkMenuCard, setcheckedMenuCard] = React.useState(false);
 
+
+  React.useEffect(() => {
+    dispatch(getModalCardAction(card));
+  }, [card]);
+
+
   const dbClickOpenModal = () => {
     dispatch(getModalCardAction(card));
     dispatch(checkedModalCardAction(true));
@@ -41,9 +47,9 @@ const Card = ({ title = "Текст", id, card }) => {
     }
     setcheckedMenuCard(false);
   };
+
   const redactNameCard = () => {
     let newTitle = prompt("Смена названия Карточки", title);
-
     dispatch(redactCardTitleAction(id, newTitle));
     setcheckedMenuCard(false);
   };
@@ -53,17 +59,19 @@ const Card = ({ title = "Текст", id, card }) => {
     if (newText) {
       dispatch(createTaskAction(card.id, newText));
     }
-
     setcheckedMenuCard(false);
   };
+
   const redactTaskName = (cardId, taskId, taskTitle) => {
     let newTitle = prompt("Смена названия Задачи", taskTitle);
     dispatch(redactTaskAction(cardId, taskId, newTitle));
     setcheckedMenuCard(false);
   };
+
   const deletedTask = (cardId, taskId) => {
     dispatch(deleteTaskAction(cardId, taskId));
   };
+
 
   const createItem = (cardId, taskId, nameTask) => {
     dispatch(createItemAction(cardId, taskId, nameTask));
@@ -76,7 +84,6 @@ const Card = ({ title = "Текст", id, card }) => {
       dispatch(redactNameItemAction(cardId, taskId, itemId, newNameTask));
     }
   };
-
   const deletedItem = (cardId, taskId, itemId) => {
     dispatch(deletedItemAction(cardId, taskId, itemId));
   };

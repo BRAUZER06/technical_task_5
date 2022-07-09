@@ -26,8 +26,9 @@ import CardMenu from "../CardMenu/CardMenu";
 const Modal = () => {
   const dispatch = useDispatch();
   const [checkedkMenuCard, setcheckedMenuCard] = React.useState(false);
-  const { checkedModal, card } = useSelector((state) => state.modal);
-  console.log(card);
+  const checkedModal   = useSelector((state) => state.modal.checkedModal);
+  const card = useSelector((state) => state.modal.card);
+  console.log('card Modal',card);
   const closeModal = () => {
     dispatch(checkedModalCardAction(false));
   };

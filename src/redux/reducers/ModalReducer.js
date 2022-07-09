@@ -21,7 +21,7 @@ const initState = {
 export const modalReducer = (state = initState, action) => {
   switch (action.type) {
     case GET_CARD_MODAL:
-      return { ...state, card: action.payload, checkedModal: true };
+      return { ...state, card: action.payload,  };
 
     case DELETED_CARD_MODAL:
       return { ...state, card: {}, checkedModal: false };

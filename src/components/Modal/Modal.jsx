@@ -7,6 +7,7 @@ import {
   AiOutlineEdit,
   AiOutlineEllipsis,
   AiOutlinePlus,
+  AiFillFilter,
 } from "react-icons/ai";
 
 import {
@@ -21,14 +22,14 @@ import {
   deletedItemAction,
 } from "../../redux/actions/CardsAction";
 import styles from "./Modal.module.scss";
-import CardMenu from "../CardMenu/CardMenu";
+import CardMenu from "../CardMenu/CardBurger";
 
 const Modal = () => {
   const dispatch = useDispatch();
   const [checkedkMenuCard, setcheckedMenuCard] = React.useState(false);
-  const checkedModal   = useSelector((state) => state.modal.checkedModal);
+  const checkedModal = useSelector((state) => state.modal.checkedModal);
   const card = useSelector((state) => state.modal.card);
-  console.log('card Modal',card);
+
   const closeModal = () => {
     dispatch(checkedModalCardAction(false));
   };
@@ -53,29 +54,29 @@ const Modal = () => {
     }
     setcheckedMenuCard(false);
   };
-  const redactTaskName = (cardID, taskId, taskTitle) => {
+  const redactTaskName = (cardId, taskId, taskTitle) => {
     let newTitle = prompt("Смена названия Задачи", taskTitle);
-    dispatch(redactTaskAction(cardID, taskId, newTitle));
+    dispatch(redactTaskAction(cardId, taskId, newTitle));
     setcheckedMenuCard(false);
   };
-  const deletedTask = (cardID, taskId) => {
-    dispatch(deleteTaskAction(cardID, taskId));
+  const deletedTask = (cardId, taskId) => {
+    dispatch(deleteTaskAction(cardId, taskId));
   };
 
-  const createItem = (cardID, taskId, nameTask) => {
-    dispatch(createItemAction(cardID, taskId, nameTask));
+  const createItem = (cardId, taskId, nameTask) => {
+    dispatch(createItemAction(cardId, taskId, nameTask));
   };
-  const checkedItem = (cardID, taskId, itemId, checked) => {
-    dispatch(checkedItemAction(cardID, taskId, itemId, checked));
+  const checkedItem = (cardId, taskId, itemId, checked) => {
+    dispatch(checkedItemAction(cardId, taskId, itemId, checked));
   };
-  const redactNameItem = (cardID, taskId, itemId, newNameTask) => {
+  const redactNameItem = (cardId, taskId, itemId, newNameTask) => {
     if (newNameTask) {
-      dispatch(redactNameItemAction(cardID, taskId, itemId, newNameTask));
+      dispatch(redactNameItemAction(cardId, taskId, itemId, newNameTask));
     }
   };
 
-  const deletedItem = (cardID, taskId, itemId) => {
-    dispatch(deletedItemAction(cardID, taskId, itemId));
+  const deletedItem = (cardId, taskId, itemId) => {
+    dispatch(deletedItemAction(cardId, taskId, itemId));
   };
 
   const openCardMenu = () => {
@@ -89,6 +90,7 @@ const Modal = () => {
     }
     setcheckedMenuCard(false);
   };
+  console.log(card);
 
   return (
     <>
@@ -112,6 +114,10 @@ const Modal = () => {
                 >
                   {card.title}
                 </h2>
+                <p className={styles.content__header_cardBurger}>
+                  <AiFillFilter />
+                </p>
+
                 <p className={styles.content__header_cardBurger}>
                   <AiOutlineEllipsis onClick={openCardMenu} />{" "}
                 </p>
@@ -159,6 +165,7 @@ const Modal = () => {
                         >
                           <div className={styles.content__block_input_div}>
                             <input
+                              checked={content.completed}
                               onChange={(e) => {
                                 checkedItem(
                                   card.id,
@@ -167,7 +174,6 @@ const Modal = () => {
                                   e.target.checked
                                 );
                               }}
-                              checked={null}
                               name={content.id}
                               type="checkbox"
                             />

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Card.module.scss";
-import { AiOutlineEllipsis, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineEllipsis, AiFillFilter, AiOutlinePlus } from "react-icons/ai";
 import {
   deletedCardAction,
   redactCardTitleAction,
@@ -13,44 +13,53 @@ import {
   deletedItemAction,
 } from "../../redux/actions/CardsAction";
 import { useDispatch } from "react-redux";
-import CardMenu from "../CardMenu/CardMenu";
+import CardMenu from "../CardMenu/CardBurger";
 import classNames from "classname";
 import Task from "../Task/Task";
 import {
   checkedModalCardAction,
   getModalCardAction,
 } from "../../redux/actions/ModalAction";
+import CardFilter from "../CardMenu/CardFilter";
+import {
+  filterTasksAlphabetAction,
+  filterTasksAmountAction,
+  filterTasksСompletedAction,
+} from "../../redux/actions/CardsAction";
 
-const Card = ({ title = "Текст", id, card }) => {
+const Card = ({ title = "Текст", cardId, card }) => {
   const dispatch = useDispatch();
   const [checkedkMenuCard, setcheckedMenuCard] = React.useState(false);
-
+  const [checkedkMenuFilter, setcheckedMenuFilter] = React.useState(false);
+  const [taskFilter, setTaskFilter] = React.useState(false);
 
   React.useEffect(() => {
     dispatch(getModalCardAction(card));
   }, [card]);
-
 
   const dbClickOpenModal = () => {
     dispatch(getModalCardAction(card));
     dispatch(checkedModalCardAction(true));
   };
 
-  const openCardMenu = () => {
+  const openCardMenu = (e) => {
     setcheckedMenuCard(!checkedkMenuCard);
+  };
+  const openCardFilter = (e) => {
+    setcheckedMenuFilter(!checkedkMenuFilter);
   };
 
   const deletedCard = () => {
     const result = window.confirm("Вы точно хотите удаить Карточку ?");
     if (result) {
-      dispatch(deletedCardAction(id));
+      dispatch(deletedCardAction(cardId));
     }
     setcheckedMenuCard(false);
   };
 
   const redactNameCard = () => {
     let newTitle = prompt("Смена названия Карточки", title);
-    dispatch(redactCardTitleAction(id, newTitle));
+    dispatch(redactCardTitleAction(cardId, newTitle));
     setcheckedMenuCard(false);
   };
 
@@ -72,7 +81,6 @@ const Card = ({ title = "Текст", id, card }) => {
     dispatch(deleteTaskAction(cardId, taskId));
   };
 
-
   const createItem = (cardId, taskId, nameTask) => {
     dispatch(createItemAction(cardId, taskId, nameTask));
   };
@@ -88,19 +96,50 @@ const Card = ({ title = "Текст", id, card }) => {
     dispatch(deletedItemAction(cardId, taskId, itemId));
   };
 
+  //В процессе
+  const filterTasksVariety = (e) => {
+    setTaskFilter(true);
+
+    if (e.target.innerHTML === "алфавиту") {
+      console.log("алфавиту");
+      return function (x, y) {
+        if (x.title < y.title) {
+          return -1;
+        }
+        if (x.title > y.title) {
+          return 1;
+        }
+        return 0;
+      };
+    } else if (e.target.innerHTML === "кол-л заданий") {
+      console.log("кол-л заданий");
+    } else if (e.target.innerHTML === "выполненные") {
+      console.log("выполненные");
+    }
+  };
+
   return (
     <div onDoubleClick={dbClickOpenModal} className={styles.container}>
       <div className={styles.container__header}>
         <p onClick={redactNameCard} className={styles.container__header_title}>
           {title}
         </p>
-        <div
-          className={classNames(
-            styles.container__header_icon,
-            checkedkMenuCard && styles.container__header_iconActive
-          )}
-        >
-          <AiOutlineEllipsis onClick={openCardMenu} />
+        <div className={styles.container__header_block}>
+          <AiFillFilter
+            className={classNames(
+              styles.container__header_icon,
+              checkedkMenuFilter && styles.container__header_iconActive
+            )}
+            onClick={(e) => openCardFilter(e)}
+          />
+
+          <AiOutlineEllipsis
+            className={classNames(
+              styles.container__header_icon,
+              checkedkMenuCard && styles.container__header_iconActive
+            )}
+            onClick={(e) => openCardMenu(e)}
+          />
         </div>
 
         {checkedkMenuCard && (
@@ -108,6 +147,12 @@ const Card = ({ title = "Текст", id, card }) => {
             createTask={createTask}
             redactNameCard={redactNameCard}
             deletedCard={deletedCard}
+          />
+        )}
+        {checkedkMenuFilter && (
+          <CardFilter
+            filterTasksVariety={filterTasksVariety}
+            taskFilter={taskFilter}
           />
         )}
       </div>

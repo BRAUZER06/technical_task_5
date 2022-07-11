@@ -13,7 +13,7 @@ const HomePages = () => {
       {cards &&
         cards.map((card) => (
           <div key={card.id} className={styles.container__Card}>
-            <Card card={card} id={card.id} title={card.title} />
+            <Card card={card} cardId={card.id} title={card.title} />
           </div>
         ))}
       <Modal />

@@ -10,7 +10,14 @@ import {
   TOGGLE_CHECKBOX_ITEM_TASK,
   REDACT_NAME_ITEM_TASK,
   DELETED_ITEM_TASK,
+  FILTER_TASK_ALPHABET,
+  FILTER_TASKS_COMPLETED,
+  FILTER_TASKS_AMOUNT,
 } from "../types/CardsActionTypes";
+
+//CARD
+//CARD
+
 export const createCardAction = (titleCard) => {
   return {
     type: CREATE_CARD,
@@ -92,5 +99,26 @@ export const deletedItemAction = (cardId, taskId, itemId) => {
   return {
     type: DELETED_ITEM_TASK,
     payload: { cardId, taskId, itemId },
+  };
+};
+
+//FilterTask in Card
+
+export const filterTasksAlphabetAction = (cardId) => {
+  return {
+    type: FILTER_TASK_ALPHABET,
+    payload: { cardId },
+  };
+};
+export const filterTasksСompletedAction = (cardId) => {
+  return {
+    type: FILTER_TASKS_COMPLETED,
+    payload: { cardId },
+  };
+};
+export const filterTasksAmountAction = (cardId) => {
+  return {
+    type: FILTER_TASKS_AMOUNT,
+    payload: { cardId },
   };
 };

@@ -1,4 +1,4 @@
-.container__cardMenu {
+.container {
   padding: 10px;
   background-color: rgb(227, 225, 225);
   border-radius: 8px;
@@ -29,7 +29,7 @@
 }
 
 @media (max-width: 1070px) {
-  .container__cardMenu {
+  .container {
     width: 270px;
     right: 13px;
     font-size: 17px;
@@ -41,7 +41,7 @@
 }
 
 @media (max-width: 690px) {
-  .container__cardMenu {
+  .container {
     padding: 5px;
     width: 250px;
     top: 45px;
@@ -52,4 +52,10 @@
       margin: 5px;
     }
   }
+}
+
+.filterTasks {
+  color: red;
+  text-align: center;
+
 }

@@ -90,7 +90,6 @@ const Modal = () => {
     }
     setcheckedMenuCard(false);
   };
-  console.log(card);
 
   return (
     <>

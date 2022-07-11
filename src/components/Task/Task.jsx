@@ -4,7 +4,7 @@ import { AiOutlineEdit, AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
 
 import classname from "classname";
 const Task = ({
-  filterTasksVariety,
+
   task,
   cardId,
   redactTaskName,
@@ -20,6 +20,12 @@ const Task = ({
       return createItem(cardId, taskID, newText);
     }
   };
+  
+  const dragOverHandler = () => {};
+  const dragLeaveHandler = () => {};
+  const dragStartHandler = () => {};
+  const dragEndHandler = () => {};
+  const dropHandler = () => {};
 
   return (
     <div className={styles.container__content}>
@@ -47,44 +53,42 @@ const Task = ({
       </div>
 
       <div className={styles.container__content__section}>
-        {task.contents
-          .sort((a, b) => (a.title > b.title ? 1 : -1))
-          ?.map((content) => (
-            <div key={content.id} className={styles.container__content_input}>
-              <div className={styles.container__content_input_div}>
-                <input
-                  checked={content.completed}
-                  onChange={(e) => {
-                    checkedItem(cardId, task.id, content.id, e.target.checked);
-                  }}
-                  name={content.id}
-                  type="checkbox"
-                />
-                <p
-                  onDoubleClick={() =>
-                    redactNameItem(
-                      cardId,
-                      task.id,
-                      content.id,
-                      prompt("Введите новое название Пункта")
-                    )
-                  }
-                >
-                  {content.text}
-                </p>
-              </div>
-
-              <div>
-                <AiOutlineDelete
-                  onClick={() => deletedItem(cardId, task.id, content.id)}
-                  className={classname(
-                    styles.container__content__header_icon,
-                    styles.container__content__header_iconItemDeletedOpacity
-                  )}
-                />
-              </div>
+        {task.contents?.map((content) => (
+          <div key={content.id} className={styles.container__content_input}>
+            <div className={styles.container__content_input_div}>
+              <input
+                checked={content.completed}
+                onChange={(e) => {
+                  checkedItem(cardId, task.id, content.id, e.target.checked);
+                }}
+                name={content.id}
+                type="checkbox"
+              />
+              <p
+                onDoubleClick={() =>
+                  redactNameItem(
+                    cardId,
+                    task.id,
+                    content.id,
+                    prompt("Введите новое название Пункта")
+                  )
+                }
+              >
+                {content.text}
+              </p>
             </div>
-          ))}
+
+            <div>
+              <AiOutlineDelete
+                onClick={() => deletedItem(cardId, task.id, content.id)}
+                className={classname(
+                  styles.container__content__header_icon,
+                  styles.container__content__header_iconItemDeletedOpacity
+                )}
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

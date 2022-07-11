@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+## Описание:  проект "Trello v2"  без использования UI-компонентов
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+##
+Технические требования:
+1 Создание группы карточек(доска). При создании указывается заголовок.
+- Реализовать возможность удаления группы и ее карточек. Группы
+располагать горизонтально с возможностью прокрутки рабочего пространства.
+- Реализовать ручную сортировку групп с помощью перетаскивания.
+2 Создание карточки задачи с заголовком.
+3 Просмотр карточки в модальном окне и ее удаление.
+- Реализовать редактирование, удаление и добавление заголовка.
+- Реализовать добавление, редактирование и удаление описания.
+По возможности:
+- Реализовать добавление, редактирование и удаление списка задач -
+заголовок списка и сам список пунктов с чекбоксами.
+- Реализовать добавление, редактирование и удаление тегов - текст, цвет.
+4 Сортировка.
+- Реализовать ручную сортировку карточек в группе с помощью
+перетаскивания.
+По возможности:
+- Реализовать добавление и удаление разделителей в виде линии между
+карточками.
+- Реализовать перемещение карточек между группами.
+5 Общий функционал.
+- Реализовать возможность полной очитски приложения в одно нажатие, без
+перезагрузки.
+По возможности:
+- Реализовать локальное сохранение состояния в браузере с восстановлением
+приложения после обновления страницы.
+Визуальные требования:
+Офромление произвольное. Можно использовать готовые бибилиотеки для
+верстки. Обязательно наличие плавной смены состояния элементов
+интерфейса.
+По возможности: адаптация под разреншения 1440, 768, 350
+Оценка:
+1 Срок выполнения задания 3-7 дней.
+2 Оцениваются: работоспособность решения, срок его исполнения и
+визульный стиль.
+3 Реализация дополнительно указанного функционала поощряется при
+оценке проекта. 
+4 Реализация функций интерфейса без использования готовых решений и
+библиотек приветствуется и поощряется при оценке. Исключением являются
+готовые решения по управлению состоянием приложения(прим. Redux, Valtio
+и пр.)
+По окончанию выполнения задания, предоставить ссылку на git реппозиторий
+с результатом на проверку
 
-In the project directory, you can run:
+## Как запустить проект:
+### `npm install`
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<br></br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Стек:
+React / Redux <br>
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br></br>
 
-### `npm run build`
+## Ссылка на gitPage:
+## https://brauzer06.github.io/technical_task_5/
+<br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Фотографии проекта:
+#  <hr>
+![](http://dl3.joxi.net/drive/2022/07/11/0053/0560/3531312/12/5dab5b3771.jpg) <br> </br>
+#  <hr>
+![](http://dl3.joxi.net/drive/2022/07/11/0053/0560/3531312/12/7687de39f6.jpg) 
+#  <hr>
+![](http://dl4.joxi.net/drive/2022/07/11/0053/0560/3531312/12/6c695cecf2.jpg)
+#  <hr>
+## Проект был сделан именно с такими вложенностями для реализации dnd. На момент 11.07.22 он был реализован, но только без использования Redux (что не годиться для меня:) )
+![](http://dl3.joxi.net/drive/2022/07/11/0053/0560/3531312/12/56957ddf57.jpg)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

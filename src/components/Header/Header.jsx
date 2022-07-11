@@ -24,7 +24,6 @@ const Header = ({ onClickCheckedNavMenu }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.card);
   const toggleSaveBoard = useSelector((state) => state.header.toggleSaveBoard);
-  console.log(state);
 
   const createCardInput = () => {
     let text = prompt("Введите название Карточки");

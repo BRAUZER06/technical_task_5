@@ -12,7 +12,21 @@ import {
 
 import { FiUsers } from "react-icons/fi";
 import { BsLightning } from "react-icons/bs";
+import { toggleCheckedSaveBoardAction } from "../../redux/actions/headerAction";
+import { useDispatch, useSelector } from "react-redux";
 const Nav = ({ checkedNavMenu, onClickCheckedNavMenu }) => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.card);
+  const toggleSaveBoard = useSelector((state) => state.header.toggleSaveBoard);
+  const saveBoard = () => {
+    window.localStorage.setItem("SaveBoard", JSON.stringify(state));
+    dispatch(toggleCheckedSaveBoardAction(true));
+
+    if (toggleSaveBoard) {
+      dispatch(toggleCheckedSaveBoardAction(false));
+      window.localStorage.clear();
+    }
+  };
   return (
     <>
       {checkedNavMenu && (
@@ -25,7 +39,7 @@ const Nav = ({ checkedNavMenu, onClickCheckedNavMenu }) => {
             />
           </div>
           <div className={styles.container__nav}>
-            <div className={styles.container__nav_item}>
+            <div onClick={saveBoard} className={styles.container__nav_item}>
               <BiClipboard /> <p>Сохранить доску</p>
             </div>
             <div className={styles.container__nav_item}>

@@ -11,7 +11,7 @@ import {
   checkedItemAction,
   redactNameItemAction,
   deletedItemAction,
-} from "../../redux/actions/CardsAction";
+} from "../../redux/actions/cardsAction";
 import { useDispatch } from "react-redux";
 import CardMenu from "../CardMenu/CardBurger";
 import classNames from "classname";
@@ -19,13 +19,8 @@ import Task from "../Task/Task";
 import {
   checkedModalCardAction,
   getModalCardAction,
-} from "../../redux/actions/ModalAction";
+} from "../../redux/actions/modalAction";
 import CardFilter from "../CardMenu/CardFilter";
-import {
-  filterTasksAlphabetAction,
-  filterTasksAmountAction,
-  filterTasksСompletedAction,
-} from "../../redux/actions/CardsAction";
 
 const Card = ({ title = "Текст", cardId, card }) => {
   const dispatch = useDispatch();
@@ -96,7 +91,7 @@ const Card = ({ title = "Текст", cardId, card }) => {
     dispatch(deletedItemAction(cardId, taskId, itemId));
   };
 
-  //В процессе
+  //Фильтрация в процессе
   const filterTasksVariety = (e) => {
     setTaskFilter(true);
 
@@ -157,7 +152,7 @@ const Card = ({ title = "Текст", cardId, card }) => {
         )}
       </div>
       <div className={styles.container__tasks}>
-        {card.tasks.map((task) => (
+        {card.tasks?.map((task) => (
           <Task
             cardId={card.id}
             key={task.id}

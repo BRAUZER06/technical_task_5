@@ -1,6 +1,5 @@
 import {
-  TOGGLE_CHECKED_BOARD,
-  TOGGLE_CHECKED_STAR,
+  TOGGLE_CHECKED_SAVE_BOARD,
   TOGGLE_CHECKED_WIDGET,
   TOGGLE_CHECKED_WORKPLACE,
   TOGGLE_CHECKED_SHAER,
@@ -8,11 +7,11 @@ import {
   TOGGLE_CHECKED_AUTOMATION,
   TOGGLE_CHECKED_FILTER,
   TOGGLE_CHECKED_MENU,
-} from "../actions/HeaderAction";
+} from "../types/HeaderActionTypes";
 
 const initState = {
-  toggleBoard: false,
-  toggleStar: false,
+  toggleSaveBoard: false,
+
   toggleWidget: false,
   toggleWorkplace: false,
   toggleShare: false,
@@ -22,10 +21,11 @@ const initState = {
   toggleMenu: false,
 };
 
-export const HeaderReducer = (state = initState, action) => {
+export const headerReducer = (state = initState, action) => {
   switch (action.type) {
-    case "NAME":
-      return state;
+    case TOGGLE_CHECKED_SAVE_BOARD:
+    
+      return {...state, toggleSaveBoard:action.payload}
 
     default:
       return state;

@@ -1,5 +1,7 @@
 import { nanoid } from "nanoid";
 import {
+  GET_LOCALSTOREG_CARD,
+  DELETED_ALL_CARD,
   CREATE_CARD_INPUT_CHECKED,
   CREATE_CARD,
   REDACT_CARD_TITLE,
@@ -117,6 +119,8 @@ const initState = {
       ],
     },
   ],
+  
+  //еще не задейстовал 
   createCardInputChecked: false,
 };
 
@@ -124,6 +128,11 @@ export const cardsReducer = (state = initState, action) => {
   switch (action.type) {
     //CARD
     //CARD
+
+    case GET_LOCALSTOREG_CARD:
+      return action.payload;
+    case DELETED_ALL_CARD:
+      return { cards: [], createCardInputChecked: false };
 
     case CREATE_CARD:
       return {

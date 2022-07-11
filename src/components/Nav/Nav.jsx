@@ -26,7 +26,7 @@ const Nav = ({ checkedNavMenu, onClickCheckedNavMenu }) => {
           </div>
           <div className={styles.container__nav}>
             <div className={styles.container__nav_item}>
-              <BiClipboard /> <p>Доска</p>
+              <BiClipboard /> <p>Сохранить доску</p>
             </div>
             <div className={styles.container__nav_item}>
               <FiUsers /> <p>Для рабочего простарнства</p>
@@ -55,11 +55,8 @@ const Nav = ({ checkedNavMenu, onClickCheckedNavMenu }) => {
             <div className={styles.container__nav_item}>
               <MdOutlineSpaceDashboard /> <p>О доске</p>
             </div>
-            <a href="">
-              <div
-                href="https://github.com/BRAUZER06"
-                className={styles.container__nav_item}
-              >
+            <a href="https://github.com/BRAUZER06">
+              <div className={styles.container__nav_item}>
                 <AiOutlineEllipsis /> <p>Еще</p>
               </div>
             </a>

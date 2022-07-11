@@ -1,4 +1,6 @@
 import {
+  GET_LOCALSTOREG_CARD,
+  DELETED_ALL_CARD,
   CREATE_CARD_INPUT_CHECKED,
   CREATE_CARD,
   REDACT_CARD_TITLE,
@@ -17,6 +19,18 @@ import {
 
 //CARD
 //CARD
+
+export const getLocalSoregCardAction = (obj) => {
+  return {
+    type: GET_LOCALSTOREG_CARD,
+    payload: obj,
+  };
+};
+export const deletedAllCardAction = () => {
+  return {
+    type: DELETED_ALL_CARD,
+  };
+};
 
 export const createCardAction = (titleCard) => {
   return {

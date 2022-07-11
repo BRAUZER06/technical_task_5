@@ -2,26 +2,29 @@ import React from "react";
 import HeaderWidget from "../HeaderWidget/HeaderWidget";
 import styles from "./Header.module.scss";
 import {
-  BiStar,
   BiClipboard,
   BiPhotoAlbum,
   BiRocket,
   BiFilter,
   BiUserPlus,
-  BiHighlight,
 } from "react-icons/bi";
 import { AiOutlineEllipsis } from "react-icons/ai";
-import { FiUsers } from "react-icons/fi";
+import { FiUsers, FiTrash2 } from "react-icons/fi";
 import { BsLightning } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createCardAction,
-} from "../../redux/actions/CardsAction";
+  deletedAllCardAction,
+  getLocalSoregCardAction,
+} from "../../redux/actions/cardsAction";
 import { AiOutlinePlus } from "react-icons/ai";
+import { toggleCheckedSaveBoardAction } from "../../redux/actions/headerAction";
 
 const Header = ({ onClickCheckedNavMenu }) => {
   const dispatch = useDispatch();
-  const { createCardInputChecked, cards } = useSelector((state) => state.card);
+  const state = useSelector((state) => state.card);
+  const toggleSaveBoard = useSelector((state) => state.header.toggleSaveBoard);
+  console.log(state);
 
   const createCardInput = () => {
     let text = prompt("Введите название Карточки");
@@ -32,27 +35,73 @@ const Header = ({ onClickCheckedNavMenu }) => {
     }
   };
 
+  const allCardsTrash = () => {
+    let answer = window.confirm(
+      "Ты точно хочешь без возврата удалить все Карточки и все что там есть ? "
+    );
+    if (answer) {
+      dispatch(deletedAllCardAction());
+      dispatch(toggleCheckedSaveBoardAction(false));
+      window.localStorage.clear();
+    }
+  };
+
+  //Логика по сохранению доски в localStorage
+  //Логика по сохранению доски в localStoreg
+  React.useEffect(() => {
+    if (window.localStorage.getItem("SaveBoard")) {
+      dispatch(toggleCheckedSaveBoardAction(true));
+      let response = JSON.parse(window.localStorage.getItem("SaveBoard"));
+      dispatch(getLocalSoregCardAction(response));
+    }
+  }, []);
+
+  const saveBoard = () => {
+    window.localStorage.setItem("SaveBoard", JSON.stringify(state));
+    dispatch(toggleCheckedSaveBoardAction(true));
+
+    if (toggleSaveBoard) {
+      dispatch(toggleCheckedSaveBoardAction(false));
+      window.localStorage.clear();
+    }
+  };
+  //при каждом изменении стейта при включенном сохранении(toggleSaveBoard), он постоянно будет заного сохрнять новый стейт с localStorage
+  if (toggleSaveBoard) {
+    window.localStorage.setItem("SaveBoard", JSON.stringify(state));
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.container__left}>
         <HeaderWidget onClick={createCardInput} Bcolor="white" color="black">
           <AiOutlinePlus />
         </HeaderWidget>
-        <HeaderWidget>
-          <BiClipboard /> <p>Доска</p>
-        </HeaderWidget>
+        <div onClick={saveBoard} className={styles.container__left_board}>
+          {toggleSaveBoard ? (
+            <HeaderWidget Bcolor="blue" color="white">
+              <BiClipboard /> <p>Сохранить доску</p>
+            </HeaderWidget>
+          ) : (
+            <HeaderWidget>
+              <BiClipboard /> <p>Сохранить доску</p>
+            </HeaderWidget>
+          )}
+        </div>
         <div className={styles.container__left_content}>
           <h2 className={styles.container__left_Name}>Junior Gate App</h2>
-          <HeaderWidget >
-            <BiStar  />
-          </HeaderWidget>
+          <div onClick={allCardsTrash} className={styles.container__left_trash}>
+            <HeaderWidget>
+              <FiTrash2 />
+            </HeaderWidget>
+          </div>
+
           <hr className={styles.container__hr} />
           <HeaderWidget>
             <BiPhotoAlbum /> <p>Junior gate</p>
           </HeaderWidget>
           <hr className={styles.container__hr} />
           <HeaderWidget>
-            <FiUsers /> <p>Для рабочего простарнства</p>
+            <FiUsers /> <p>Рабочее пространство</p>
           </HeaderWidget>
           <hr className={styles.container__hr} />
           <HeaderWidget Bcolor="white" color="black">

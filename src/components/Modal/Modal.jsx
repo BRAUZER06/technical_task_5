@@ -1,7 +1,7 @@
 import classname from "classname";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { checkedModalCardAction } from "../../redux/actions/ModalAction";
+import { checkedModalCardAction } from "../../redux/actions/modalAction";
 import {
   AiOutlineDelete,
   AiOutlineEdit,
@@ -20,7 +20,7 @@ import {
   checkedItemAction,
   redactNameItemAction,
   deletedItemAction,
-} from "../../redux/actions/CardsAction";
+} from "../../redux/actions/cardsAction";
 import styles from "./Modal.module.scss";
 import CardMenu from "../CardMenu/CardBurger";
 

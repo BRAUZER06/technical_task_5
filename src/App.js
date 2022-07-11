@@ -7,8 +7,8 @@ import HomePages from "./pages/HomePages/HomePages";
 
 function App() {
   const [checkedNavMenu, setCheckedNavMenu] = React.useState(false);
-  const onClickCheckedNavMenu = (boolean) => {
-    setCheckedNavMenu(boolean);
+  const onClickCheckedNavMenu = (checked) => {
+    setCheckedNavMenu(checked);
   };
   return (
     <div className="App">

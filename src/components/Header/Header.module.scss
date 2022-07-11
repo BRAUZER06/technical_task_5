@@ -40,15 +40,22 @@
     margin: 0;
   }
 }
-@media (max-width: 1900px) {
+@media (max-width: 1920px) {
   .container__right_content {
     display: none;
   }
 }
 
-@media (max-width: 1360px) {
+@media (max-width: 1380px) {
   .container__left_content {
     display: none;
   }
 }
+
+@media (max-width: 425px) {
+  .container__left_board {
+    display: none;
+  }
+}
+
 

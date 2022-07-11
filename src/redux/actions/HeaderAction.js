@@ -1,6 +1,5 @@
 import {
-  TOGGLE_CHECKED_BOARD,
-  TOGGLE_CHECKED_STAR,
+  TOGGLE_CHECKED_SAVE_BOARD,
   TOGGLE_CHECKED_WIDGET,
   TOGGLE_CHECKED_WORKPLACE,
   TOGGLE_CHECKED_SHAER,
@@ -10,30 +9,28 @@ import {
   TOGGLE_CHECKED_MENU,
 } from "../types/HeaderActionTypes";
 
-export const toggleChecledBoard = (check) => {
-  return { type: TOGGLE_CHECKED_BOARD, payload: check };
+export const toggleCheckedSaveBoardAction = (checked) => {
+  return { type: TOGGLE_CHECKED_SAVE_BOARD, payload: checked };
 };
-export const toggleChecledStar = (check) => {
-  return { type: TOGGLE_CHECKED_STAR, payload: check };
+
+export const toggleChecledWidgetAction = (checked) => {
+  return { type: TOGGLE_CHECKED_WIDGET, payload: checked };
 };
-export const toggleChecledWidget = (check) => {
-  return { type: TOGGLE_CHECKED_WIDGET, payload: check };
+export const toggleChecledWorkplaceAction = (checked) => {
+  return { type: TOGGLE_CHECKED_WORKPLACE, payload: checked };
 };
-export const toggleChecledWorkplace = (check) => {
-  return { type: TOGGLE_CHECKED_WORKPLACE, payload: check };
+export const toggleChecledShareAction = (checked) => {
+  return { type: TOGGLE_CHECKED_SHAER, payload: checked };
 };
-export const toggleChecledShare = (check) => {
-  return { type: TOGGLE_CHECKED_SHAER, payload: check };
+export const toggleChecledUpdateAction = (checked) => {
+  return { type: TOGGLE_CHECKED_UPDATE, payload: checked };
 };
-export const toggleChecledUpdate = (check) => {
-  return { type: TOGGLE_CHECKED_UPDATE, payload: check };
+export const toggleChecledAutomationAction = (checked) => {
+  return { type: TOGGLE_CHECKED_AUTOMATION, payload: checked };
 };
-export const toggleChecledAutomation = (check) => {
-  return { type: TOGGLE_CHECKED_AUTOMATION, payload: check };
+export const toggleChecledFilterAction = (checked) => {
+  return { type: TOGGLE_CHECKED_FILTER, payload: checked };
 };
-export const toggleChecledFilter = (check) => {
-  return { type: TOGGLE_CHECKED_FILTER, payload: check };
-};
-export const toggleChecledMenu = (check) => {
-  return { type: TOGGLE_CHECKED_MENU, payload: check };
+export const toggleChecledMenuAction = (checked) => {
+  return { type: TOGGLE_CHECKED_MENU, payload: checked };
 };

@@ -1,10 +1,10 @@
-import { HeaderReducer } from "./HeaderReducer";
+import { headerReducer } from "./headerReducer";
 import { combineReducers } from "redux";
-import { cardsReducer } from "./CardsReducer";
-import { modalReducer } from "./ModalReducer";
+import { cardsReducer } from "./cardsReducer";
+import { modalReducer } from "./modalReducer";
 
 export const RootReducer = combineReducers({
-  header: HeaderReducer,
+  header: headerReducer,
   card: cardsReducer,
   modal: modalReducer,
 });

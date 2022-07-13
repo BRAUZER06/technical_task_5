@@ -95,15 +95,15 @@ const Header = ({ onClickCheckedNavMenu }) => {
           </div>
 
           <hr className={styles.container__hr} />
-          <HeaderWidget>
+          <HeaderWidget  Bcolor="gray" color="#dddddd" Bshadow='1px 1px 2px 0px black inset' cursor='default'>
             <BiPhotoAlbum /> <p>Junior gate</p>
           </HeaderWidget>
           <hr className={styles.container__hr} />
-          <HeaderWidget>
+          <HeaderWidget Bcolor="gray" color="#dddddd" Bshadow='1px 1px 2px 0px black inset' cursor='default'>
             <FiUsers /> <p>Рабочее пространство</p>
           </HeaderWidget>
           <hr className={styles.container__hr} />
-          <HeaderWidget Bcolor="white" color="black">
+          <HeaderWidget Bcolor="white" color="black" Bshadow='1px 1px 2px 0px black inset' cursor='default'>
             <BiUserPlus /> <p>Поделиться</p>
           </HeaderWidget>
         </div>
@@ -111,17 +111,17 @@ const Header = ({ onClickCheckedNavMenu }) => {
 
       <div className={styles.container__right}>
         <div className={styles.container__right_content}>
-          <HeaderWidget>
+          <HeaderWidget Bcolor="gray" color="#dddddd" Bshadow='1px 1px 2px 0px black inset' cursor='default'>
             <BiRocket /> <p>Улучшение</p>
           </HeaderWidget>
 
-          <HeaderWidget>
+          <HeaderWidget Bcolor="gray" color="#dddddd" Bshadow='1px 1px 2px 0px black inset' cursor='default'>
             <BsLightning />
             <p>Автоматизация</p>
           </HeaderWidget>
 
           <hr className={styles.container__hr} />
-          <HeaderWidget>
+          <HeaderWidget Bcolor="gray" color="#dddddd" Bshadow='1px 1px 2px 0px black inset' cursor='default'>
             <BiFilter /> <p>Фильтр</p>
           </HeaderWidget>
         </div>

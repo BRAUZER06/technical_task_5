@@ -14,10 +14,12 @@ import { FiUsers } from "react-icons/fi";
 import { BsLightning } from "react-icons/bs";
 import { toggleCheckedSaveBoardAction } from "../../redux/actions/headerAction";
 import { useDispatch, useSelector } from "react-redux";
-const Nav = ({ checkedNavMenu, onClickCheckedNavMenu }) => {
+const Nav = ({ checkedNavMenu, handlerCheckedNavMenu }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.card);
   const toggleSaveBoard = useSelector((state) => state.header.toggleSaveBoard);
+
+  
   const saveBoard = () => {
     window.localStorage.setItem("SaveBoard", JSON.stringify(state));
     dispatch(toggleCheckedSaveBoardAction(true));
@@ -34,7 +36,7 @@ const Nav = ({ checkedNavMenu, onClickCheckedNavMenu }) => {
           <div className={styles.container__header}>
             <p>Menu</p>
             <AiOutlineClose
-              onClick={() => onClickCheckedNavMenu(false)}
+              onClick={() => handlerCheckedNavMenu(false)}
               className={styles.container__header_close}
             />
           </div>

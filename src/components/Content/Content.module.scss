@@ -1,0 +1,75 @@
+.container__content {
+  &__footer {
+    color: rgb(33, 33, 84);
+    border-radius: 5px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    &_icon {
+      opacity: 1;
+      cursor: pointer;
+      font-size: 33px;
+      padding: 3px;
+      border-radius: 50%;
+      transition: 0.3s;
+      margin-right: 5px;
+      &:hover {
+        background-color: rgb(204, 204, 204);
+      }
+    }
+
+    &_iconItemDeletedOpacity {
+      opacity: 0;
+    }
+    &_iconTaskDeletedOpacity {
+      opacity: 0;
+    }
+  }
+  &:hover {
+    background-color: rgb(251, 250, 255);
+    box-shadow: 3px 3px 8px 0px rgba(34, 60, 80, 0.8);
+  }
+
+  &_input {
+    box-shadow: 1px 2px 5px 0px rgba(34, 60, 80, 0.2);
+    background-color: rgb(250, 250, 250);
+    margin: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &_div {
+      margin: 5px 0px;
+      align-items: center;
+      display: flex;
+
+      border-radius: 5px;
+      > input {
+        margin-left: 7px;
+        cursor: pointer;
+        min-width: 20px;
+        min-height: 20px;
+        border: 2px solid black;
+        font-size: 17px;
+      }
+      > p {
+        margin: 6px 10px;
+        cursor: pointer;
+        font-size: 20px;
+      }
+    }
+    &:hover {
+      background-color: rgb(226, 226, 226);
+    }
+  }
+}
+
+.container__content_input:hover .container__content__footer_iconItemDeletedOpacity {
+  opacity: 1;
+  color: red;
+}
+.container__content:hover .container__content__footer_iconTaskDeletedOpacity {
+  opacity: 1;
+  color: red;
+}

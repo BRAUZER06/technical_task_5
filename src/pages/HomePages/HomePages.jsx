@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Card from "../../components/Card/Card";
-import Modal from "../../components/Modal/Modal";
+import Modal from "../../components/Modal";
 import styles from "./HomePages.module.scss";
 
 const HomePages = () => {
@@ -9,12 +9,11 @@ const HomePages = () => {
 
   return (
     <div className={styles.container}>
-      {cards &&
-        cards?.map((card) => (
-          <div key={card.id} className={styles.container__Card}>
-            <Card card={card} cardId={card.id} title={card.title} />
-          </div>
-        ))}
+      {cards.map((card) => (
+        <div key={card.id} className={styles.container__Card}>
+          <Card card={card} title={card.title} />
+        </div>
+      ))}
       <Modal />
     </div>
   );

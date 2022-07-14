@@ -14,7 +14,8 @@ import {
   DELETED_ITEM_TASK,
   FILTER_TASK_ALPHABET,
   FILTER_TASKS_COMPLETED,
-  FILTER_TASKS_AMOUNT,
+  FILTER_TASK_ALPHABET_REVERSE,
+  FILTER_TASKS_COMPLETED_REVERSE,
 } from "../types/CardsActionTypes";
 
 //CARD
@@ -46,18 +47,18 @@ export const createCardInputCheckedAction = (checked) => {
   };
 };
 
-export const deletedCardAction = (id) => {
+export const deletedCardAction = (cardId) => {
   return {
     type: DELETED_CARD,
-    payload: id,
+    payload: cardId,
   };
 };
 
-export const redactCardTitleAction = (id, newTitleCard) => {
+export const redactCardTitleAction = (cardId, newTitleCard) => {
   return {
     type: REDACT_CARD_TITLE,
     payload: {
-      id,
+      cardId,
       newTitleCard,
     },
   };
@@ -118,21 +119,28 @@ export const deletedItemAction = (cardId, taskId, itemId) => {
 
 //FilterTask in Card
 
-export const filterTasksAlphabetAction = (cardId) => {
+export const filterContentsAlphabetAction = (cardId) => {
   return {
     type: FILTER_TASK_ALPHABET,
     payload: { cardId },
   };
 };
-export const filterTasksСompletedAction = (cardId) => {
+export const filterContentsСompletedAction = (cardId) => {
   return {
     type: FILTER_TASKS_COMPLETED,
     payload: { cardId },
   };
 };
-export const filterTasksAmountAction = (cardId) => {
+
+export const filterContentsAlphabetReverseAction = (cardId) => {
   return {
-    type: FILTER_TASKS_AMOUNT,
+    type: FILTER_TASK_ALPHABET_REVERSE,
+    payload: { cardId },
+  };
+};
+export const filterContentsСompletedReverseAction = (cardId) => {
+  return {
+    type: FILTER_TASKS_COMPLETED_REVERSE,
     payload: { cardId },
   };
 };

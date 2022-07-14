@@ -15,7 +15,8 @@ import {
   DELETED_ITEM_TASK,
   FILTER_TASK_ALPHABET,
   FILTER_TASKS_COMPLETED,
-  FILTER_TASKS_AMOUNT,
+  FILTER_TASK_ALPHABET_REVERSE,
+  FILTER_TASKS_COMPLETED_REVERSE,
 } from "../types/CardsActionTypes";
 const initState = {
   cards: [
@@ -119,8 +120,8 @@ const initState = {
       ],
     },
   ],
-  
-  //еще не задейстовал 
+
+  //еще не задейстовал
   createCardInputChecked: false,
 };
 
@@ -160,7 +161,7 @@ export const cardsReducer = (state = initState, action) => {
       return {
         ...state,
         cards: state.cards.map((card) => {
-          if (card.id === action.payload.id) {
+          if (card.id === action.payload.cardId) {
             return { ...card, title: action.payload.newTitleCard };
           }
           return card;
@@ -336,16 +337,92 @@ export const cardsReducer = (state = initState, action) => {
         }),
       };
 
-    // FilterTasks in Card
+    // FilterContent in Tasks
+    // FilterContent in Tasks
 
     case FILTER_TASK_ALPHABET:
-      return {};
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card.id === action.payload.cardId) {
+            return {
+              ...card,
+              tasks: card.tasks.map((task) => {
+                return {
+                  ...task,
+                  contents: task.contents.sort((a, b) => {
+                    return a.text.toLowerCase() > b.text.toLowerCase() ? 1 : -1;
+                  }),
+                };
+              }),
+            };
+          }
+          return card;
+        }),
+      };
+
+    case FILTER_TASK_ALPHABET_REVERSE:
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card.id === action.payload.cardId) {
+            return {
+              ...card,
+              tasks: card.tasks.map((task) => {
+                return {
+                  ...task,
+                  contents: task.contents.sort((a, b) => {
+                    return a.text.toLowerCase() < b.text.toLowerCase() ? 1 : -1;
+                  }),
+                };
+              }),
+            };
+          }
+          return card;
+        }),
+      };
 
     case FILTER_TASKS_COMPLETED:
-      return {};
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card.id === action.payload.cardId) {
+            return {
+              ...card,
+              tasks: card.tasks.map((task) => {
+                return {
+                  ...task,
+                  contents: task.contents.sort((a, b) => {
+                    return a.completed < b.completed ? 1 : -1;
+                  }),
+                };
+              }),
+            };
+          }
+          return card;
+        }),
+      };
 
-    case FILTER_TASKS_AMOUNT:
-      return {};
+    case FILTER_TASKS_COMPLETED_REVERSE:
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card.id === action.payload.cardId) {
+            return {
+              ...card,
+              tasks: card.tasks.map((task) => {
+                return {
+                  ...task,
+                  contents: task.contents.sort((a, b) => {
+                    return a.completed > b.completed ? 1 : -1;
+                  }),
+                };
+              }),
+            };
+          }
+          return card;
+        }),
+      };
 
     default:
       return state;

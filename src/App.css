@@ -5,7 +5,6 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
   font-family: "Roboto", sans-serif;
-  
 }
 
 .App {
@@ -31,8 +30,6 @@
   }
   
 }
-
-
 @media (max-width:425px) {
   .App{
     padding: 6px 6px 6px;

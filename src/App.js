@@ -1,24 +1,23 @@
 import React from "react";
-import "./App.css";
-import Card from "./components/Card/Card";
-import Header from "./components/Header/Header";
+import Header from "./components/Header";
 import Nav from "./components/Nav/Nav";
 import HomePages from "./pages/HomePages/HomePages";
+import "./App.css";
 
 function App() {
   const [checkedNavMenu, setCheckedNavMenu] = React.useState(false);
-  const onClickCheckedNavMenu = (checked) => {
+  const onCheckedNavMenu = (checked) => {
     setCheckedNavMenu(checked);
   };
   return (
     <div className="App">
-      <Header onClickCheckedNavMenu={onClickCheckedNavMenu} />
+      <Header handlerCheckedNavMenu={onCheckedNavMenu} />
       <div>
         <HomePages />
       </div>
 
       <Nav
-        onClickCheckedNavMenu={onClickCheckedNavMenu}
+        handlerCheckedNavMenu={onCheckedNavMenu}
         checkedNavMenu={checkedNavMenu}
       />
     </div>

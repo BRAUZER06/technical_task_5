@@ -19,26 +19,18 @@ const Task = ({ task, cardId, handlerOpenCardMenu }) => {
     if (newText) {
       dispatch(createItemAction(cardId, taskId, newText));
     }
-
     handlerOpenCardMenu();
   };
 
   const redactTaskName = (cardId, taskId, taskTitle) => {
     let newTitle = prompt("Смена названия Задачи", taskTitle);
     dispatch(redactTaskAction(cardId, taskId, newTitle));
-
     handlerOpenCardMenu();
   };
 
   const deletedTask = (cardId, taskId) => {
     dispatch(deleteTaskAction(cardId, taskId));
   };
-
-  const dragOverHandler = () => {};
-  const dragLeaveHandler = () => {};
-  const dragStartHandler = () => {};
-  const dragEndHandler = () => {};
-  const dropHandler = () => {};
 
   return (
     <div className={styles.container__content}>
@@ -66,8 +58,9 @@ const Task = ({ task, cardId, handlerOpenCardMenu }) => {
       </div>
 
       <div className={styles.container__content__section}>
-        {task.contents.map((content) => (
+        {task?.contents.map((content) => (
           <Content
+            task={task}
             key={content.id}
             cardId={cardId}
             taskId={task.id}

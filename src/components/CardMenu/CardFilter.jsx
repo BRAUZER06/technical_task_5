@@ -2,10 +2,7 @@ import React from "react";
 
 import styles from "./BurgerAndFilter.module.scss";
 
-const CardFilter = ({
-  handlerFilterTasksVariety,
-  handlerFilterContentsVariety,
-}) => {
+const CardFilter = ({ handlerFilterContentsVariety }) => {
   return (
     <div className={styles.container}>
       <p className={styles.container_p_center}> Фильтрация карточек по:</p>

@@ -22,8 +22,8 @@ import CardFilter from "../CardMenu/CardFilter";
 
 const Card = ({ card }) => {
   const dispatch = useDispatch();
-  const [checkedkMenuCard, setcheckedMenuCard] = React.useState(false);
-  const [checkedkMenuFilter, setcheckedMenuFilter] = React.useState(false);
+  const [checkedkBurgerCard, setcheckedBurgerCard] = React.useState(false);
+  const [checkedkFilterCard, setcheckedFilterCard] = React.useState(false);
 
   React.useEffect(() => {
     dispatch(getModalCardAction(card));
@@ -35,13 +35,13 @@ const Card = ({ card }) => {
     if (result) {
       dispatch(deletedCardAction(card.id));
     }
-    setcheckedMenuCard(false);
+    setcheckedBurgerCard(false);
   };
 
   const onRedactNameCard = () => {
     let newTitle = prompt("Смена названия Карточки", card.title);
     dispatch(redactCardTitleAction(card.id, newTitle));
-    setcheckedMenuCard(false);
+    setcheckedBurgerCard(false);
   };
 
   const dbClickOpenModal = () => {
@@ -50,10 +50,10 @@ const Card = ({ card }) => {
   };
 
   const onOpenCardMenu = () => {
-    setcheckedMenuCard(!checkedkMenuCard);
+    setcheckedBurgerCard(!checkedkBurgerCard);
   };
   const onOpenCardFilter = () => {
-    setcheckedMenuFilter(!checkedkMenuFilter);
+    setcheckedFilterCard(!checkedkFilterCard);
   };
 
   const onCreateTask = () => {
@@ -61,7 +61,7 @@ const Card = ({ card }) => {
     if (newText) {
       dispatch(createTaskAction(card.id, newText));
     }
-    setcheckedMenuCard(false);
+    setcheckedBurgerCard(false);
   };
 
   const onFilterContentsVariety = (name) => {
@@ -89,7 +89,7 @@ const Card = ({ card }) => {
           <AiFillFilter
             className={classNames(
               styles.container__header_icon,
-              checkedkMenuFilter && styles.container__header_iconActive
+              checkedkFilterCard && styles.container__header_iconActive
             )}
             onClick={(e) => onOpenCardFilter(e)}
           />
@@ -97,20 +97,20 @@ const Card = ({ card }) => {
           <AiOutlineEllipsis
             className={classNames(
               styles.container__header_icon,
-              checkedkMenuCard && styles.container__header_iconActive
+              checkedkBurgerCard && styles.container__header_iconActive
             )}
             onClick={(e) => onOpenCardMenu(e)}
           />
         </div>
 
-        {checkedkMenuCard && (
+        {checkedkBurgerCard && (
           <CardBurger
             handlerCreateTask={onCreateTask}
             handlerRedactNameCard={onRedactNameCard}
             handlerDeletedCard={onDeletedCard}
           />
         )}
-        {checkedkMenuFilter && (
+        {checkedkFilterCard && (
           <CardFilter handlerFilterContentsVariety={onFilterContentsVariety} />
         )}
       </div>

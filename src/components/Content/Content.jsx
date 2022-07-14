@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions/cardsAction";
 import styles from "./Content.module.scss";
 
-const Content = ({ cardId, taskId, content }) => {
+const Content = ({ cardId, taskId, content, }) => {
   const dispatch = useDispatch();
 
   const checkedItem = (cardId, taskId, itemId, checked) => {
@@ -26,8 +26,14 @@ const Content = ({ cardId, taskId, content }) => {
     dispatch(deletedItemAction(cardId, taskId, itemId));
   };
 
+
+
   return (
-    <div key={content.id} className={styles.container__content_input}>
+    <div
+      draggable={true}
+      key={content.id}
+      className={styles.container__content_input}
+    >
       <div className={styles.container__content_input_div}>
         <input
           checked={content.completed}

@@ -6,8 +6,10 @@ import HeaderLetfBlock from "./HeaderLetfBlock";
 import HeaderRightBlock from "./HeaderRightBlock";
 
 import { toggleCheckedSaveBoardAction } from "../../redux/actions/headerAction";
-import { createCardAction, getLocalSoregCardAction} from "../../redux/actions/cardsAction";
-
+import {
+  createCardAction,
+  getLocalSoregCardAction,
+} from "../../redux/actions/cardsAction";
 
 const Header = ({ handlerCheckedNavMenu }) => {
   const dispatch = useDispatch();
@@ -24,7 +26,7 @@ const Header = ({ handlerCheckedNavMenu }) => {
   };
 
   //Логика по сохранению доски в localStorage
-  //Логика по сохранению доски в localStoreg
+  //Грамотно закинуть в хук useLocalStorage
   React.useEffect(() => {
     if (window.localStorage.getItem("SaveBoard")) {
       dispatch(toggleCheckedSaveBoardAction(true));
@@ -42,7 +44,7 @@ const Header = ({ handlerCheckedNavMenu }) => {
       window.localStorage.clear();
     }
   };
-  //при каждом изменении стейта при включенном сохранении(toggleSaveBoard), он постоянно будет заного сохрнять новый стейт с localStorage
+  //при каждом изменении стейта при включенном сохранении(toggleSaveBoard),  он постоянно будет сохрнять новый стейт в localStorage
   if (toggleSaveBoard) {
     window.localStorage.setItem("SaveBoard", JSON.stringify(state));
   }

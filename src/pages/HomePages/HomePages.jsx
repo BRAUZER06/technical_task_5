@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Card from "../../components/Card/Card";
-import Modal from "../../components/Modal";
+import Modal from "../../components/Modal/Modal";
 import styles from "./HomePages.module.scss";
 
 const HomePages = () => {

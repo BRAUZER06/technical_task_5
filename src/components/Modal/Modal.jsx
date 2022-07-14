@@ -59,6 +59,7 @@ const Modal = () => {
       dispatch(deletedCardAction(card.id));
     }
     setcheckedBurgerCard(false);
+    closeModal()
   };
   const redactTaskName = (cardId, taskId, taskTitle) => {
     let newTitle = prompt("Смена названия Задачи", taskTitle);
@@ -73,11 +74,11 @@ const Modal = () => {
     dispatch(createItemAction(cardId, taskId, nameTask));
   };
 
-  const openCardMenu = () => {
-    setcheckedBurgerCard(!checkedkBurgerCard);
+  const onToggleCardBurger = (checked = !checkedkBurgerCard) => {
+    setcheckedBurgerCard(checked);
   };
-  const onOpenCardFilter = () => {
-    setcheckedFilterCard(!checkedkFilterCard);
+  const onToggleCardFilter = (checked = !checkedkFilterCard) => {
+    setcheckedFilterCard(checked);
   };
 
   const onCreateItem = (cardId, taskID) => {
@@ -124,16 +125,21 @@ const Modal = () => {
                 </h2>
                 <div>
                   <p className={styles.content__header_cardBurger}>
-                    <AiFillFilter onClick={onOpenCardFilter} />
+                    <AiFillFilter
+                      onClick={() => onToggleCardFilter(!checkedkFilterCard)}
+                    />
                   </p>
                   <p className={styles.content__header_cardBurger}>
-                    <AiOutlineEllipsis onClick={openCardMenu} />
+                    <AiOutlineEllipsis
+                      onClick={() => onToggleCardBurger(!checkedkBurgerCard)}
+                    />
                   </p>
                 </div>
               </div>
 
               {checkedkBurgerCard && (
                 <CardBurger
+                  handlerToggleCardBurger={onToggleCardBurger}
                   handlerCreateTask={onCreateTask}
                   handlerRedactNameCard={onRedactNameCard}
                   handlerDeletedCard={onDeletedCard}
@@ -141,6 +147,7 @@ const Modal = () => {
               )}
               {checkedkFilterCard && (
                 <CardFilter
+                  handlerToggleCardFilter={onToggleCardFilter}
                   handlerFilterContentsVariety={onFilterContentsVariety}
                 />
               )}

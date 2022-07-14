@@ -36,6 +36,7 @@ const Card = ({ card }) => {
       dispatch(deletedCardAction(card.id));
     }
     setcheckedBurgerCard(false);
+    setcheckedFilterCard(false);
   };
 
   const onRedactNameCard = () => {
@@ -49,11 +50,11 @@ const Card = ({ card }) => {
     dispatch(checkedModalCardAction(true));
   };
 
-  const onOpenCardMenu = () => {
-    setcheckedBurgerCard(!checkedkBurgerCard);
+  const onToggleCardBurger = (checked = !checkedkBurgerCard) => {
+    setcheckedBurgerCard(checked);
   };
-  const onOpenCardFilter = () => {
-    setcheckedFilterCard(!checkedkFilterCard);
+  const onToggleCardFilter = (checked = !checkedkFilterCard) => {
+    setcheckedFilterCard(checked);
   };
 
   const onCreateTask = () => {
@@ -80,7 +81,7 @@ const Card = ({ card }) => {
     <div onDoubleClick={dbClickOpenModal} className={styles.container}>
       <div className={styles.container__header}>
         <p
-          onClick={onRedactNameCard}
+          onClick={() => onRedactNameCard()}
           className={styles.container__header_title}
         >
           {card.title}
@@ -91,7 +92,7 @@ const Card = ({ card }) => {
               styles.container__header_icon,
               checkedkFilterCard && styles.container__header_iconActive
             )}
-            onClick={(e) => onOpenCardFilter(e)}
+            onClick={() => onToggleCardFilter(!checkedkFilterCard)}
           />
 
           <AiOutlineEllipsis
@@ -99,26 +100,30 @@ const Card = ({ card }) => {
               styles.container__header_icon,
               checkedkBurgerCard && styles.container__header_iconActive
             )}
-            onClick={(e) => onOpenCardMenu(e)}
+            onClick={() => onToggleCardBurger(!checkedkBurgerCard)}
           />
         </div>
 
         {checkedkBurgerCard && (
           <CardBurger
+            handlerToggleCardBurger={onToggleCardBurger}
             handlerCreateTask={onCreateTask}
             handlerRedactNameCard={onRedactNameCard}
             handlerDeletedCard={onDeletedCard}
           />
         )}
         {checkedkFilterCard && (
-          <CardFilter handlerFilterContentsVariety={onFilterContentsVariety} />
+          <CardFilter
+            handlerToggleCardFilter={onToggleCardFilter}
+            handlerFilterContentsVariety={onFilterContentsVariety}
+          />
         )}
       </div>
       <div className={styles.container__tasks}>
         {card.tasks.map((task) => (
           <Task
             key={task.id}
-            handlerOpenCardMenu={onOpenCardMenu}
+            handlerOpenCardMenu={onToggleCardBurger}
             cardId={card.id}
             task={task}
           />
